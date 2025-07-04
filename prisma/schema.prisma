@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Format {
+  FEATURE
+  SERIES
+  CLASSIC
+}
+
+model Category {
+  id String @id @default(cuid())
+  name String
+  slug String @unique
+  order Int?
+  subCategories SubCategory[]
+  contents Content[]
+}
+
+model SubCategory{
+  id String @id @default(cuid())
+  name String
+  slug String @unique
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+  contents Content[]
+}
+
+model Content {
+  id String @id @default(cuid())
+  title String
+  slug String @unique
+  description String
+  synopsis String?
+  format Format
+  runtime Int?
+  year Int?
+  language String
+  posterUrl String?
+  trailerUrl String?
+  categories Category[]
+  subCategories SubCategory[]
+  // festivals
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
