@@ -1,0 +1,24 @@
+@mixin col-span($n) {
+  grid-column: span $n;
+}
+
+@mixin grid-layout(
+  $cols-desktop,
+  $cols-mobile,
+  $col-spacing,
+  $col-margin,
+  $full: false,
+  $breakpoint-md: 768px
+) {
+  display: grid;
+  grid-template-columns: repeat($cols-desktop, 1fr);
+  gap: $col-spacing;
+  margin: 0 auto;
+  width: if($full, 100%, calc(100% - #{2 * $col-margin}));
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat($cols-mobile, 1fr);
+    gap: $col-spacing * 0.5;
+    width: if($full, 100%, calc(100% - 40px));
+  }
+}

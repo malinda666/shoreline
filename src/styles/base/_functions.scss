@@ -1,0 +1,16 @@
+@use "sass:math";
+@use "sass:meta";
+
+/// px-to-vw($px, $base)
+/// Converts px to vw units based on a design width (default 1440)
+@function px-to-vw($px, $base: 1440) {
+  @return math.div($px, $base) * 100vw;
+}
+
+@function strip-unit($value) {
+  @if meta.type-of($value) == "number" and math.unit($value) != "" {
+    @return math.div($value, ($value * 0 + 1));
+  }
+
+  @return $value;
+}

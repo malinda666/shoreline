@@ -1,0 +1,74 @@
+@use "functions" as *;
+@use "mixins" as *;
+
+$colors: (
+  "background": "#ffffff",
+  "off-white": "#F5F1EE",
+  "off-black": "#000000",
+  "accent-1": "#FEB911",
+  "accent-2": "#76ACDF",
+);
+
+$spaces: (
+  1: 240,
+  2: 120,
+  3: 60,
+  4: 30,
+);
+
+$font-sizes: (
+  ("h1", 150, -0.03em, 800, 1, "--f-nohemi"),
+  ("h2", 100, -0.03em, 600, 1, "--f-nohemi"),
+  ("h3", 60, -0.03em, 600, 1, "--f-nohemi"),
+  ("p", 32, -0.03em, 600, "normal", "--f-inter"),
+  ("body", 16, 0em, 400, "150%", "--f-inter"),
+  ("body-sm", 12, 0em, 400, "120%", "--f-inter")
+);
+
+@each $name, $size, $spacing, $weight, $leading, $family in $font-sizes {
+  .fs-#{$name} {
+    font-size: #{px-to-vw($size)};
+    font-weight: #{$weight};
+    font-family: var(#{$family});
+    letter-spacing: #{$spacing};
+    line-height: #{$leading};
+  }
+}
+
+$cols-desktop: 16;
+$cols-mobile: 8;
+
+$col-margin: 60px;
+$col-spacing: 20px;
+
+$breakpoint-md: 768px;
+
+.layout {
+  @include grid-layout($cols-desktop, $cols-mobile, $col-spacing, $col-margin);
+}
+.layout--full {
+  @include grid-layout(
+    $cols-desktop,
+    $cols-mobile,
+    $col-spacing,
+    $col-margin,
+    true
+  );
+}
+.row {
+  display: flex;
+  margin: 0 auto;
+  width: calc(100% - #{2 * $col-margin});
+}
+:root {
+  --h-factor: 1.45;
+  --my: #{px-to-vw(strip-unit($col-margin))};
+
+  @each $color, $value in $colors {
+    --c-#{$color}: #{$value};
+  }
+
+  @each $label, $value in $spaces {
+    --s-#{$label}: #{px-to-vw($value)};
+  }
+}

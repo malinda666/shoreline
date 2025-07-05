@@ -1,0 +1,69 @@
+@use "@/styles/base/mixins" as *;
+
+.wrapper {
+  position: fixed;
+  top: var(--my);
+  left: 0;
+  right: 0;
+  width: 100%;
+  .container {
+    position: relative;
+    flex-direction: column;
+    background-color: transparent;
+
+    .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--my);
+      z-index: 999;
+    }
+
+    &_dark {
+      // background-color: var(--c-off-black);
+      color: var(--c-off-white);
+    }
+
+    .menu--trigger {
+    }
+  }
+  nav {
+    position: relative;
+    height: var(--s-1);
+    contain: paint;
+    color: var(--c-off-white);
+
+    z-index: 2;
+    // position: absolute;
+    // margin-top: var(--s-1);
+
+    // display: flex;
+    .nav_main {
+      @include col-span(12);
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          margin-right: var(--s-4);
+        }
+      }
+    }
+    .nav_secondary {
+      @include col-span(4);
+      ul {
+        margin-top: var(--s-4);
+        li {
+        }
+      }
+    }
+  }
+
+  .background {
+    position: absolute;
+    top: calc(-1 * var(--my));
+    left: 0;
+    width: 100%;
+    height: calc(100% + var(--my));
+    background-color: var(--c-off-black);
+  }
+}

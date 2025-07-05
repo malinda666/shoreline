@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localfont from "next/font/local";
+import MainLayout from "@/components/layout/main-layout";
+
 import "@/styles/globals.scss";
 
 const nohemi = localfont({
@@ -36,7 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${nohemi.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${nohemi.variable}`}>
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   );
 }

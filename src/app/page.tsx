@@ -1,3 +1,8 @@
 export default function Home() {
-  return <>home page</>;
+  return (
+    <div className="layout">
+      <div className="fs-body">asdsdasdas</div>
+      <div className="fs-p">asldfnasdfn</div>
+    </div>
+  );
 }

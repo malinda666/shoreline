@@ -1,0 +1,7 @@
+@use "@/styles/base/mixins" as *;
+
+.container {
+  main {
+    margin-top: calc(2 * var(--my));
+  }
+}
