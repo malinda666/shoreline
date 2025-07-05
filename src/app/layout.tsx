@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import localfont from "next/font/local";
 import "@/styles/globals.scss";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const nohemi = localfont({
+  src: [
+    {
+      path: "../../public/assets/fonts/nohemi/Nohemi-Regular.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/nohemi/Nohemi-Semibold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--f-nohemi",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--f-inter",
   subsets: ["latin"],
 });
 
@@ -24,9 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <body className={`${inter.variable} ${nohemi.variable}`}>{children}</body>
     </html>
   );
 }

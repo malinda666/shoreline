@@ -6,10 +6,11 @@
   border: 0;
 }
 
-$bg: #000;
-$primary: #fff;
+$bg: #fff;
+$primary: #000;
 
 body {
   background-color: $bg;
   color: $primary;
+  font-family: var(--f-inter);
 }
