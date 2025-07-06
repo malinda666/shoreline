@@ -1,24 +1,9 @@
 "use client";
 
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import { IUIContext } from "@/types";
+import { createContext, ReactNode, useContext, useState } from "react";
 
-interface UIContext {
-  isLoading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
-  isMenuOpen: boolean;
-  toggleMenu: () => void;
-  isScrollEnabled: boolean;
-  setScrollEnabled: Dispatch<SetStateAction<boolean>>;
-}
-
-const initialState: UIContext = {
+const initialState: IUIContext = {
   isLoading: false,
   setLoading: () => {},
   isMenuOpen: false,
@@ -27,7 +12,7 @@ const initialState: UIContext = {
   setScrollEnabled: () => {},
 };
 
-const UIContext = createContext<UIContext>(initialState);
+const UIContext = createContext<IUIContext>(initialState);
 
 type TContextProps = {
   children: ReactNode;

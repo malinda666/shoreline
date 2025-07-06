@@ -1,0 +1,19 @@
+@use "@/styles/base/mixins" as *;
+
+.container {
+  .deco {
+    justify-content: center;
+  }
+
+  .inner {
+    .cards {
+      grid-column: 1/9;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s-4);
+    }
+    .content_wrap {
+      grid-column: 10/-1;
+    }
+  }
+}

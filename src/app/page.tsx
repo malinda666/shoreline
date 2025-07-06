@@ -1,8 +1,20 @@
+import Hero from "@/components/views/hero";
+import AboutBrief from "@/components/views/about-brief";
+import BrandBrief from "@/components/views/brands-brief";
+import Lineup from "@/components/views/lineup";
+
 export default function Home() {
   return (
-    <div className="layout">
-      <div className="fs-body">asdsdasdas</div>
-      <div className="fs-p">asldfnasdfn</div>
-    </div>
+    <>
+      <Hero
+        titleLine1="Shoreline"
+        titleLine2="Entertainment"
+        subtitle="Distributing Dreams, One Frame at a Time."
+        mode="main"
+      />
+      <AboutBrief />
+      <BrandBrief />
+      <Lineup />
+    </>
   );
 }

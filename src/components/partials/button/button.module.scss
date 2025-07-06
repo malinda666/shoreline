@@ -1,0 +1,79 @@
+@use "@/styles/base/functions" as *;
+
+.container {
+  --size: #{px-to-vw(18)};
+  --offset: calc(var(--size) / 2);
+  --x: calc(-1 * var(--size));
+  --transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 700ms;
+
+  display: flex;
+  align-items: center;
+  //   gap: var(--offset);
+  padding: calc(var(--size));
+  contain: paint;
+  width: auto;
+
+  .chev {
+    height: calc(var(--size) / 1.5);
+    width: calc(var(--size) / 1.5);
+    object-fit: contain;
+  }
+
+  .inner {
+    position: relative;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: var(--size);
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: var(--c-off-black);
+      will-change: transform;
+      transform: scaleX(0);
+      transition: var(--transition);
+      transform-origin: 0 100%;
+    }
+  }
+
+  .chev_first,
+  .inner,
+  .chev_second {
+    will-change: transform;
+    transition: var(--transition);
+  }
+
+  .chev_first {
+    transform: translateX(0) scale(0);
+    position: absolute;
+    left: 0;
+  }
+  .inner {
+    transform: translateX(var(--x));
+  }
+  .chev_second {
+    margin-left: var(--offset);
+    transform: translateX(var(--x)) scale(1);
+  }
+
+  &:hover {
+    .chev_first {
+      transform: translateX(0%) scale(1);
+    }
+    .inner {
+      transform: translateX(0%);
+      font-weight: 800;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+    .chev_second {
+      transform: translateX(calc(-0.125 * var(--x))) scale(0);
+    }
+  }
+}

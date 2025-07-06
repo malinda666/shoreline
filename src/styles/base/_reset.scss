@@ -1,0 +1,165 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+blockquote,
+body,
+dd,
+dl,
+figcaption,
+figure,
+h1,
+h2,
+h3,
+h4,
+input,
+li,
+ol,
+p,
+ul {
+  margin: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+  //   scrollbar-width: none;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 0 0;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+a,
+button {
+  color: inherit;
+}
+
+a {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+}
+
+img,
+svg {
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+img {
+  pointer-events: none;
+}
+
+button,
+input,
+select,
+textarea {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font: inherit;
+  outline: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 0 0;
+}
+
+select {
+  border: none;
+}
+
+footer,
+section {
+  position: relative;
+}
+html {
+  bottom: 0;
+  left: 0;
+  //   overflow: hidden;
+  //   position: fixed;
+  right: 0;
+  top: 0;
+}
+
+body {
+  background-color: var(--c-background);
+  color: var(--c-off-black);
+  font-family: var(--f-inter);
+  margin: 0;
+  text-rendering: optimizeSpeed;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+}
+img,
+video {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (min-width: 601px) {
+  footer,
+  header,
+  section {
+    will-change: transform;
+  }
+}
+
+picture {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+}

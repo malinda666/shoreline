@@ -1,0 +1,26 @@
+@use "@/styles/base/functions" as *;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  contain: paint;
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+
+  .logo_item {
+    position: relative;
+    width: #{px-to-vw(150)};
+    height: #{px-to-vw(150)};
+    background-color: var(--c-off-white);
+
+    > img {
+      object-fit: contain;
+    }
+  }
+}

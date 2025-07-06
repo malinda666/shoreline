@@ -16,11 +16,45 @@ $spaces: (
   4: 30,
 );
 
+@each $label, $size in $spaces {
+  .m-#{$label} {
+    margin: #{px-to-vw($size)};
+  }
+  .mt-#{$label} {
+    margin-top: #{px-to-vw($size)};
+  }
+  .ml-#{$label} {
+    margin-left: #{px-to-vw($size)};
+  }
+  .mr-#{$label} {
+    margin-right: #{px-to-vw($size)};
+  }
+  .mb-#{$label} {
+    margin-bottom: #{px-to-vw($size)};
+  }
+  .p-#{$label} {
+    padding: #{px-to-vw($size)};
+  }
+  .pt-#{$label} {
+    padding-top: #{px-to-vw($size)};
+  }
+  .pl-#{$label} {
+    padding-left: #{px-to-vw($size)};
+  }
+  .pr-#{$label} {
+    padding-right: #{px-to-vw($size)};
+  }
+  .pb-#{$label} {
+    padding-bottom: #{px-to-vw($size)};
+  }
+}
+
 $font-sizes: (
-  ("h1", 150, -0.03em, 800, 1, "--f-nohemi"),
+  ("h1", 150, -0.03em, 800, 0.95, "--f-nohemi"),
+  ("h2-bold", 100, -0.03em, 800, 1, "--f-nohemi"),
   ("h2", 100, -0.03em, 600, 1, "--f-nohemi"),
-  ("h3", 60, -0.03em, 600, 1, "--f-nohemi"),
-  ("p", 32, -0.03em, 600, "normal", "--f-inter"),
+  ("h3", 80, -0.03em, 600, 1, "--f-nohemi"),
+  ("p", 32, -0.03em, 500, "normal", "--f-inter"),
   ("body", 16, 0em, 400, "150%", "--f-inter"),
   ("body-sm", 12, 0em, 400, "120%", "--f-inter")
 );
@@ -59,6 +93,7 @@ $breakpoint-md: 768px;
   display: flex;
   margin: 0 auto;
   width: calc(100% - #{2 * $col-margin});
+  justify-content: space-between;
 }
 :root {
   --h-factor: 1.45;

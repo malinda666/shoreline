@@ -10,6 +10,7 @@
   $full: false,
   $breakpoint-md: 768px
 ) {
+  position: relative;
   display: grid;
   grid-template-columns: repeat($cols-desktop, 1fr);
   gap: $col-spacing;

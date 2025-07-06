@@ -6,6 +6,7 @@
   left: 0;
   right: 0;
   width: 100%;
+  z-index: 9999;
   .container {
     position: relative;
     flex-direction: column;
@@ -15,16 +16,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      z-index: 999;
     }
 
     &_dark {
       // background-color: var(--c-off-black);
       color: var(--c-off-white);
+      z-index: 3;
     }
 
-    .menu--trigger {
+    .menu_trigger {
+      cursor: pointer;
     }
   }
   nav {

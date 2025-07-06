@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+
+  &_spaced {
+    padding-top: calc(2 * var(--my));
+  }
+
+  &_light {
+    background-color: inherit;
+    color: var(--c-off-dark);
+  }
+  &_dark {
+    background-color: var(--c-off-black);
+    color: var(--c-off-white);
+  }
+}

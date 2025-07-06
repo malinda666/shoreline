@@ -23,7 +23,7 @@ const Header = () => {
           <div className="fs-body">
             <span>LOGO</span>
           </div>
-          <div className="fs-body" onClick={toggleMenu}>
+          <div className={clsx("fs-body", s.menu_trigger)} onClick={toggleMenu}>
             <span>{isMenuOpen ? "Close" : "Menu"}</span>
           </div>
         </div>

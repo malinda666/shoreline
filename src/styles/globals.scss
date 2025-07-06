@@ -1,28 +1,4 @@
+@use "base/reset";
 @use "base/mixins" as *;
 @use "base/functions" as *;
 @use "base/setup";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: 0;
-  border: 0;
-  background-color: unset;
-  font: inherit;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body {
-  background-color: var(--c-background);
-  color: var(--c-off-black);
-  font-family: var(--f-inter);
-}
