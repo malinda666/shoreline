@@ -15,7 +15,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: var(--my);
+
       z-index: 999;
     }
 
@@ -29,10 +29,9 @@
   }
   nav {
     position: relative;
-    height: var(--s-1);
     contain: paint;
     color: var(--c-off-white);
-
+    padding: var(--s-2) 0;
     z-index: 2;
     // position: absolute;
     // margin-top: var(--s-1);

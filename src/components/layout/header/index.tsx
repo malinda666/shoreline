@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { mainNav, socialNav } from "@/constants/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 
 import s from "./header.module.scss";
+import { useUI } from "@/context/ui-context";
 
 const Header = () => {
-  const [isMenuOpen, setMenuOpen] = useState(true);
-
-  const toggleMenu = () => setMenuOpen(!isMenuOpen);
+  const { isMenuOpen, toggleMenu } = useUI();
 
   return (
     <div className={s.wrapper}>

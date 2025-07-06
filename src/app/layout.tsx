@@ -1,30 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localfont from "next/font/local";
+
 import MainLayout from "@/components/layout/main-layout";
 
 import "@/styles/globals.scss";
-
-const nohemi = localfont({
-  src: [
-    {
-      path: "../../public/assets/fonts/nohemi/Nohemi-Regular.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/nohemi/Nohemi-Semibold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-  ],
-  variable: "--f-nohemi",
-});
-
-const inter = Inter({
-  variable: "--f-inter",
-  subsets: ["latin"],
-});
+import { UIContextProvider } from "@/context/ui-context";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -37,10 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${nohemi.variable}`}>
-        <MainLayout>{children}</MainLayout>
-      </body>
-    </html>
+    <UIContextProvider>
+      <MainLayout>{children}</MainLayout>
+    </UIContextProvider>
   );
 }
