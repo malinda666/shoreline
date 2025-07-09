@@ -1,0 +1,31 @@
+"use client";
+
+import Section from "@/components/layout/section";
+import LogoCard from "@/components/partials/cards/logo-card";
+import Grid from "@/components/partials/grid";
+import SectionTitle from "@/components/partials/section-title";
+import { globalReleasePartners } from "@/constants/partners";
+import React from "react";
+
+const GlobalPartners = () => {
+  return (
+    <Section>
+      <SectionTitle line1="Global Release Partners" line2="" className="mb-2" />
+      <Grid columns={8} className="vw pb-1" aspect={1 / 1}>
+        {globalReleasePartners.map((row, i) => (
+          <Grid.Row key={i}>
+            {row.map((item, j) => (
+              <Grid.Item key={j} isEmpty={!item}>
+                {item ? (
+                  <LogoCard url={item.image} alt={item.title} key={item.id} />
+                ) : null}
+              </Grid.Item>
+            ))}
+          </Grid.Row>
+        ))}
+      </Grid>
+    </Section>
+  );
+};
+
+export default GlobalPartners;

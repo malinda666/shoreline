@@ -11,16 +11,6 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     width: max-content;
-  }
-
-  .logo_item {
-    position: relative;
-    width: #{px-to-vw(150)};
-    height: #{px-to-vw(150)};
-    background-color: var(--c-off-white);
-
-    > img {
-      object-fit: contain;
-    }
+    gap: #{px-to-vw(30)};
   }
 }

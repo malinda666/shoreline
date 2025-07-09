@@ -8,15 +8,28 @@ type GridProps = {
   children: ReactNode;
   className?: string;
   columns?: number;
+  aspect?: number;
+  gap?: number;
 };
 
-const Grid = ({ children, className, columns = 4 }: GridProps) => {
+const Grid = ({
+  children,
+  className,
+  columns = 4,
+  aspect = 3 / 4,
+  gap = 20,
+}: GridProps) => {
+  const vwGap = `${(gap / 1440) * 100}vw`;
   return (
     <div
       className={clsx(s.grid, className)}
       style={{
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ["--cols" as any]: columns.toString(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ["--aspect" as any]: aspect,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ["--gap" as any]: vwGap,
       }}
     >
       {children}

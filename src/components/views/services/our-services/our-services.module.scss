@@ -1,0 +1,9 @@
+.service_card {
+  position: relative;
+  background-color: var(--c-off-white);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}

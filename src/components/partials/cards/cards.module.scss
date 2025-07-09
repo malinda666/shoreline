@@ -26,7 +26,7 @@
   .image_wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3/3.5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,5 +77,16 @@
         font-weight: 600;
       }
     }
+  }
+}
+
+.logo_card {
+  position: relative;
+  width: #{px-to-vw(150)};
+  height: #{px-to-vw(150)};
+  background-color: var(--c-off-white);
+
+  > img {
+    object-fit: contain;
   }
 }

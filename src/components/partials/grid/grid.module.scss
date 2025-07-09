@@ -1,18 +1,27 @@
 @use "@/styles/base/functions" as *;
 
 .grid {
+  --_gap: var(--gap);
   display: flex;
   flex-direction: column;
-  gap: #{px-to-vw(20)};
+  gap: var(--_gap);
   &_row {
     display: grid;
     grid-template-columns: repeat(var(--cols), 1fr);
-    gap: #{px-to-vw(20)};
+    gap: var(--_gap);
   }
   &_item {
     position: relative;
-    min-width: #{px-to-vw(250)};
-    aspect-ratio: 3/4.5;
+    min-width: auto;
+    aspect-ratio: var(--aspect);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    > div {
+      width: 100%;
+    }
     &_empty {
       border: none;
     }
