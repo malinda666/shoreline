@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row pt-3 fs-body-sm">
+        <div className="row pt-3 fs-body-sm pb-3">
           <div>
             <span>© 2025 SHORELINE ENTERTAINMENT All rights reserved</span>
           </div>

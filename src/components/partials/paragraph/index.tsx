@@ -7,12 +7,20 @@ type Props = {
   content: string;
   indented?: boolean;
   className?: string;
+  size?: "default" | "sm";
 };
 
-const Paragraph = ({ content, indented, className }: Props) => {
+const Paragraph = ({ content, indented, className, size }: Props) => {
   return (
     <div className={clsx(className)}>
-      <p className={clsx("fs-p", indented && s.indented)}>{content}</p>
+      <p
+        className={clsx(
+          size === "sm" ? "fs-body" : "fs-p",
+          indented && s.indented
+        )}
+      >
+        {content}
+      </p>
     </div>
   );
 };

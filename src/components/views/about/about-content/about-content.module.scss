@@ -1,0 +1,9 @@
+.container {
+  position: relative;
+  .content_left {
+    grid-column: 1/8;
+  }
+  .content_right {
+    grid-column: 9/-1;
+  }
+}

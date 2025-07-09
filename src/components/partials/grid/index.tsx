@@ -7,7 +7,6 @@ import clsx from "clsx";
 type GridProps = {
   children: ReactNode;
   className?: string;
-
   columns?: number;
 };
 

@@ -66,7 +66,11 @@
       flex-direction: column;
       color: var(--c-off-black);
       .sub_title {
-        > p {
+        align-items: end;
+        &_deco {
+          grid-column: 1/4;
+        }
+        &_para {
           grid-column: 8/-1;
         }
       }

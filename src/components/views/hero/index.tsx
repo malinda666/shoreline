@@ -5,6 +5,8 @@ import s from "./hero.module.scss";
 import clsx from "clsx";
 import Section from "@/components/layout/section";
 import { THeroTypes } from "@/types";
+import Paragraph from "@/components/partials/paragraph";
+import Star from "@/components/partials/star";
 
 type Props = {
   titleLine1: string;
@@ -27,7 +29,9 @@ const Hero = ({
     >
       {isMain ? <div className={s.background} /> : null}
 
-      <div className={clsx(s.wrapper, "layout pb-3", !isMain && "pt-1")}>
+      <div
+        className={clsx(s.wrapper, "layout", !isMain ? "pt-1 pb-2" : "pb-3")}
+      >
         <div className={s.title_wrap}>
           {isMain ? (
             <>
@@ -45,8 +49,13 @@ const Hero = ({
                 <h1 className={clsx("fs-h2-bold")}>{titleLine1}</h1>
                 <h1 className={clsx("fs-h2-bold")}>{titleLine2}</h1>
               </div>
-              <div className={clsx(s.sub_title, "layout--full")}>
-                <p className="fs-p mt-2">{subtitle}</p>
+              <div className={clsx(s.sub_title, "layout--full pt-2")}>
+                <Star className={s.sub_title_deco} />
+                <Paragraph
+                  content={subtitle}
+                  className={clsx(s.sub_title_para)}
+                  indented
+                />
               </div>
             </>
           )}

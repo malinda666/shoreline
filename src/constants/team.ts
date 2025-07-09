@@ -1,36 +1,36 @@
-export const featuredContent = [
+export const team = [
   [
     {
       id: "1",
-      title: "Into the Blue",
+      title: "Morris Ruskin",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     null,
     {
       id: "2",
-      title: "Echoes of Silence",
+      title: "Jessica Morgan",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     {
       id: "3",
-      title: "Shifting Horizons",
+      title: "Ethan Rivera",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
   ],
   [
     {
       id: "4",
-      title: "Voices in the Wind",
+      title: "Sofia Patel",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     {
       id: "5",
-      title: "Fragments",
+      title: "Daniel Kim",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     {
       id: "6",
-      title: "Golden Frame",
+      title: "Claire Dupont",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     null,
@@ -38,42 +38,19 @@ export const featuredContent = [
   [
     {
       id: "7",
-      title: "Parallel Lines",
+      title: "Lucas Zhang",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     {
       id: "8",
-      title: "Beneath the Light",
+      title: "Amara Singh",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
     },
     null,
     {
       id: "9",
-      title: "Unseen Worlds",
+      title: "Jorge Alvarez",
       image: "/assets/stills/Field-Sketches-Thumbnail-750x375 1.png",
-    },
-  ],
-];
-
-export const featuredContent2Col = [
-  [
-    {
-      id: "1",
-      title: "Into the Blue",
-      image: "/assets/posters/2.png",
-    },
-    {
-      id: "2",
-      title: "Echoes of Silence",
-      image: "/assets/posters/1.png",
-    },
-  ],
-  [
-    null,
-    {
-      id: "6",
-      title: "Golden Frame",
-      image: "/assets/posters/4.png",
     },
   ],
 ];
