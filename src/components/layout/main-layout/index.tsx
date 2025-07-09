@@ -8,6 +8,7 @@ import Header from "../header";
 import s from "./main-layout.module.scss";
 import { useUI } from "@/context/ui-context";
 import clsx from "clsx";
+import Footer from "../footer";
 
 const nohemi = localfont({
   src: [
@@ -59,6 +60,7 @@ const MainLayout = ({ children }: Props) => {
           >
             {children}
           </main>
+          <Footer />
         </div>
       </body>
     </html>

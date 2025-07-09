@@ -1,0 +1,20 @@
+@use "@/styles/base/functions" as *;
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: #{px-to-vw(20)};
+  &_row {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: #{px-to-vw(20)};
+  }
+  &_item {
+    position: relative;
+    min-width: #{px-to-vw(250)};
+    aspect-ratio: 3/4.5;
+    &_empty {
+      border: none;
+    }
+  }
+}

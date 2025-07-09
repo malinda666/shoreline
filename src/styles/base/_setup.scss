@@ -14,6 +14,8 @@ $spaces: (
   2: 120,
   3: 60,
   4: 30,
+  5: 15,
+  6: 7.5,
 );
 
 @each $label, $size in $spaces {
@@ -54,6 +56,7 @@ $font-sizes: (
   ("h2-bold", 100, -0.03em, 800, 1, "--f-nohemi"),
   ("h2", 100, -0.03em, 600, 1, "--f-nohemi"),
   ("h3", 80, -0.03em, 600, 1, "--f-nohemi"),
+  ("h3-bold", 80, -0.03em, 800, 1, "--f-nohemi"),
   ("p", 32, -0.03em, 500, "normal", "--f-inter"),
   ("body", 16, 0em, 400, "150%", "--f-inter"),
   ("body-sm", 12, 0em, 400, "120%", "--f-inter")
@@ -92,12 +95,17 @@ $breakpoint-md: 768px;
 .row {
   display: flex;
   margin: 0 auto;
-  width: calc(100% - #{2 * $col-margin});
+  width: var(--viewport-width);
   justify-content: space-between;
+}
+.vw {
+  width: var(--viewport-width);
+  margin: 0 auto;
 }
 :root {
   --h-factor: 1.45;
   --my: #{px-to-vw(strip-unit($col-margin))};
+  --viewport-width: calc(100% - #{2 * $col-margin});
 
   @each $color, $value in $colors {
     --c-#{$color}: #{$value};

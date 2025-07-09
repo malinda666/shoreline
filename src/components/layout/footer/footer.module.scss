@@ -1,0 +1,55 @@
+.container {
+  contain: paint;
+  .outro {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: url("/assets/stills/beach-fire-footer-2022-new\ 1.png");
+    background-size: cover;
+    background-position: 50%;
+    color: var(--c-off-white);
+
+    &_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--c-off-black);
+      opacity: 0.5;
+    }
+
+    &_title,
+    &_star {
+      z-index: 2;
+    }
+
+    &_title {
+      max-width: 65%;
+      text-align: center;
+    }
+  }
+  .footer {
+    height: 100vh;
+    color: var(--c-off-white);
+    background-color: var(--c-off-black);
+
+    &_title {
+      grid-column: 1/9;
+    }
+    &_para {
+      grid-column: 10/-1;
+    }
+
+    &_sitemap {
+      grid-column: 1/4;
+    }
+
+    &_social {
+      grid-column: 4/7;
+    }
+  }
+}
