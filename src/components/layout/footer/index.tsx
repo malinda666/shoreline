@@ -6,6 +6,7 @@ import s from "./footer.module.scss";
 import Star from "@/components/partials/star";
 import SectionTitle from "@/components/partials/section-title";
 import { mainNav, socialNav } from "@/constants/navigation";
+import Paragraph from "@/components/partials/paragraph";
 
 const Footer = () => {
   return (
@@ -25,10 +26,12 @@ const Footer = () => {
             variant="bold"
             className={s.footer_title}
           />
-          <p className={clsx("fs-p", s.footer_para)}>
-            We welcome you to contact us for more information about any of our
-            films or services.
-          </p>
+          <Paragraph
+            content="We welcome you to contact us for more information about any of our
+            films or services."
+            className={clsx("fs-p", s.footer_para)}
+            indented
+          />
         </div>
         <div className="layout">
           <div className={clsx(s.footer_sitemap)}>

@@ -8,6 +8,7 @@ import Star from "@/components/partials/star";
 import Button from "@/components/partials/button";
 import { StatCard } from "@/components/partials/cards";
 import SectionTitle from "@/components/partials/section-title";
+import Paragraph from "@/components/partials/paragraph";
 
 const AboutBrief = () => {
   return (
@@ -28,12 +29,14 @@ const AboutBrief = () => {
           <StatCard title="50+" subtitle="Academy & Spirit award nominations" />
         </div>
         <div className={s.content_wrap}>
-          <p className="fs-p pb-3">
-            Shoreline Entertainment is a leading global film sales company, home
+          <Paragraph
+            content="Shoreline Entertainment is a leading global film sales company, home
             to producer Morris Ruskin. With premieres at Sundance, TIFF,
             Berlinale, and more, we bring acclaimed stories to the world through
-            top markets and festivals.
-          </p>
+            top markets and festivals."
+            indented
+            className="pb-3"
+          />
           <Button className={s.cta}>Learn more</Button>
         </div>
       </div>

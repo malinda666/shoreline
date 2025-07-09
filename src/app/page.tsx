@@ -1,7 +1,8 @@
 import Hero from "@/components/views/hero";
-import AboutBrief from "@/components/views/about-brief";
-import BrandBrief from "@/components/views/brands-brief";
-import Lineup from "@/components/views/lineup";
+import AboutBrief from "@/components/views/home/about-brief";
+import BrandBrief from "@/components/views/home/brands-brief";
+
+import Lineup from "@/components/views/home/lineup";
 
 export default function Home() {
   return (
