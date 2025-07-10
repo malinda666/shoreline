@@ -8,16 +8,22 @@ import SectionTitle from "@/components/partials/section-title";
 import { mainNav, socialNav } from "@/constants/navigation";
 import Paragraph from "@/components/partials/paragraph";
 
-const Footer = () => {
+type Props = {
+  variant?: "default" | "half";
+};
+
+const Footer = ({ variant = "default" }: Props) => {
   return (
     <div className={clsx(s.container)}>
-      <div className={clsx(s.outro)}>
-        <div className={clsx(s.outro_overlay)}></div>
-        <Star className={s.outro_star} />
-        <div className={clsx(s.outro_title, "mt-3")}>
-          <h3 className="fs-h3-bold">{`Let's Hang Out Around the Bonfire !`}</h3>
+      {variant === "default" ? (
+        <div className={clsx(s.outro)}>
+          <div className={clsx(s.outro_overlay)}></div>
+          <Star className={s.outro_star} />
+          <div className={clsx(s.outro_title, "mt-3")}>
+            <h3 className="fs-h3-bold">{`Let's Hang Out Around the Bonfire !`}</h3>
+          </div>
         </div>
-      </div>
+      ) : null}
       <footer className={clsx(s.footer)}>
         <div className="layout pb-2 pt-2">
           <SectionTitle

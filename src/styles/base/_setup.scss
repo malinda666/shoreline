@@ -18,6 +18,8 @@ $spaces: (
   6: 7.5,
 );
 
+$transition: cubic-bezier(0.23, 1, 0.32, 1) 700ms;
+
 @each $label, $size in $spaces {
   .m-#{$label} {
     margin: #{px-to-vw($size)};
@@ -106,6 +108,7 @@ $breakpoint-md: 768px;
   --h-factor: 1.45;
   --my: #{px-to-vw(strip-unit($col-margin))};
   --viewport-width: calc(100% - #{2 * $col-margin});
+  --transition: #{$transition};
 
   @each $color, $value in $colors {
     --c-#{$color}: #{$value};

@@ -14,3 +14,17 @@ export interface IUIContext {
   isScrollEnabled: boolean;
   setScrollEnabled: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface ISubCategory {
+  categoryId: string;
+  id: string;
+  name: string;
+  slug: sting;
+}
+export interface ICategory {
+  id: string;
+  name: string;
+  order: number | null;
+  slug: string;
+  subCategories: ISubCategory[];
+}

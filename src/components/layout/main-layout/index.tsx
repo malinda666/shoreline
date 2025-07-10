@@ -9,6 +9,7 @@ import s from "./main-layout.module.scss";
 import { useUI } from "@/context/ui-context";
 import clsx from "clsx";
 import Footer from "../footer";
+import { usePathname } from "next/navigation";
 
 const nohemi = localfont({
   src: [
@@ -37,6 +38,9 @@ type Props = {
 
 const MainLayout = ({ children }: Props) => {
   const { isScrollEnabled, isMenuOpen } = useUI();
+  const pathname = usePathname();
+
+  const isContentPages = pathname.includes("content");
 
   return (
     <html lang="en">
@@ -60,7 +64,7 @@ const MainLayout = ({ children }: Props) => {
           >
             {children}
           </main>
-          <Footer />
+          <Footer variant={isContentPages ? "half" : "default"} />
         </div>
       </body>
     </html>
