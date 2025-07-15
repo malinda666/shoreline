@@ -1,0 +1,20 @@
+@use "@/styles/base/functions" as *;
+
+.container {
+  --slide-width: #{px-to-vw(300)};
+  position: relative;
+  overflow: hidden;
+
+  .content_inner {
+    display: flex;
+    gap: var(--margin);
+  }
+
+  .item {
+    // aspect-ratio: 3/4;
+    width: var(--slide-width);
+    height: calc(var(--h-factor) * var(--slide-width));
+    &_inner {
+    }
+  }
+}

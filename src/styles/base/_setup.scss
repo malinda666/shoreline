@@ -109,6 +109,7 @@ $breakpoint-md: 768px;
   --my: #{px-to-vw(strip-unit($col-margin))};
   --viewport-width: calc(100% - #{2 * $col-margin});
   --transition: #{$transition};
+  --margin: #{$col-margin};
 
   @each $color, $value in $colors {
     --c-#{$color}: #{$value};

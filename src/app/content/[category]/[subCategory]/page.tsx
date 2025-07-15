@@ -1,5 +1,7 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prismaClient";
+import Section from "@/components/layout/section";
+import SectionTitle from "@/components/partials/section-title";
+import ContentCategory from "@/components/views/content/content-category";
 
 export const revalidate = 60;
 
@@ -23,23 +25,19 @@ export default async function SubCategoryPage({ params }: Props) {
   if (!sub) return <div className="p-8">Subcategory not found.</div>;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        {sub.category.name} / {sub.name}
-      </h1>
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        {sub.contents.map((content) => (
-          <Link
-            key={content.id}
-            href={`/content/${category}/${subCategory}/${content.slug}`}
-            className="border p-4 rounded hover:shadow-md transition"
-          >
-            <h2 className="text-xl font-semibold mb-1">{content.title}</h2>
-            <p className="text-sm text-gray-600">{content.year}</p>
-            <p className="text-sm mt-2 line-clamp-3">{content.description}</p>
-          </Link>
-        ))}
+    <Section>
+      <div className="row">
+        <SectionTitle
+          line1={sub.category.name}
+          line2={sub.name}
+          variant="bold"
+        />
       </div>
-    </div>
+      <ContentCategory
+        sub={sub}
+        category={category}
+        subCategory={subCategory}
+      />
+    </Section>
   );
 }
