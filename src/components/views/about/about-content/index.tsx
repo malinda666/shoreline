@@ -38,7 +38,9 @@ const AboutContent = () => {
                 {row.map((item, j) => (
                   <Grid.Item key={j} isEmpty={!item}>
                     {item ? (
-                      <Image src={item.image} alt={item.title} fill />
+                      <div className={s.content_right_item}>
+                        <Image src={item.image} alt={item.title} fill />
+                      </div>
                     ) : null}
                   </Grid.Item>
                 ))}

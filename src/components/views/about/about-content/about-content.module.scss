@@ -5,5 +5,15 @@
   }
   .content_right {
     grid-column: 9/-1;
+
+    &_item {
+      position: relative;
+      width: 100%;
+      aspect-ratio: var(--aspect);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
   }
 }

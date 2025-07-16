@@ -1,14 +1,16 @@
 import React from "react";
 
 import { mainNav, socialNav } from "@/constants/navigation";
-import Link from "next/link";
 import clsx from "clsx";
 
 import s from "./header.module.scss";
 import { useUI } from "@/context/ui-context";
+import Link from "@/components/partials/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const { isMenuOpen, toggleMenu } = useUI();
+  const pathname = usePathname();
 
   return (
     <div className={s.wrapper}>
@@ -40,9 +42,15 @@ const Header = () => {
             <ul>
               {mainNav.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.path}>
-                    <span className="fs-h3">{item.label}</span>
-                  </Link>
+                  <Link
+                    text={item.label}
+                    href={item.path}
+                    key={item.key}
+                    className="mb-6"
+                    size={4}
+                    isActive={pathname === item.path}
+                    metadata={item.metadata}
+                  />
                 </li>
               ))}
             </ul>
@@ -53,9 +61,13 @@ const Header = () => {
             <ul>
               {socialNav.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.path}>
-                    <span className="fs-p">{item.label}</span>
-                  </Link>
+                  <Link
+                    text={item.label}
+                    href={item.path}
+                    key={item.key}
+                    className="mb-6"
+                    size={3}
+                  />
                 </li>
               ))}
             </ul>

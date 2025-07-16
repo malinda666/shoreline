@@ -20,6 +20,7 @@ export const mainNav: INavItem[] = [
     key: "content",
     label: "Content",
     path: "/content",
+    metadata: 456,
   },
   {
     key: "partners",

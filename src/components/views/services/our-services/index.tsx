@@ -1,7 +1,6 @@
 "use client";
 
 import Section from "@/components/layout/section";
-import Button from "@/components/partials/button";
 import Grid from "@/components/partials/grid";
 import Paragraph from "@/components/partials/paragraph";
 import SectionTitle from "@/components/partials/section-title";
@@ -10,6 +9,7 @@ import React from "react";
 import clsx from "clsx";
 
 import s from "./our-services.module.scss";
+import Link from "@/components/partials/link";
 
 const OurServices = () => {
   return (
@@ -30,7 +30,14 @@ const OurServices = () => {
                       size="sm"
                       className="mb-4"
                     />
-                    {item.ctaLink ? <Button>Learn More</Button> : null}
+                    {item.ctaLink ? (
+                      <Link
+                        href="/services"
+                        text="Learn more"
+                        variant="alt"
+                        size={2}
+                      />
+                    ) : null}
                   </div>
                 ) : null}
               </Grid.Item>

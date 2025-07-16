@@ -5,10 +5,10 @@ import s from "./about-brief.module.scss";
 import Section from "@/components/layout/section";
 import clsx from "clsx";
 import Star from "@/components/partials/star";
-import Button from "@/components/partials/button";
 import { StatCard } from "@/components/partials/cards";
 import SectionTitle from "@/components/partials/section-title";
 import Paragraph from "@/components/partials/paragraph";
+import Link from "@/components/partials/link";
 
 const AboutBrief = () => {
   return (
@@ -38,7 +38,13 @@ const AboutBrief = () => {
             indented
             className="pb-3"
           />
-          <Button className={s.cta}>Learn more</Button>
+          <Link
+            href="/about-us"
+            text="Learn More"
+            size={2}
+            className={s.cta}
+            variant="alt"
+          />
         </div>
       </div>
     </Section>

@@ -8,6 +8,7 @@ const initialState: IUIContext = {
   setLoading: () => {},
   isMenuOpen: false,
   toggleMenu: () => {},
+  closeMenu: () => {},
   isScrollEnabled: true,
   setScrollEnabled: () => {},
 };
@@ -33,6 +34,11 @@ export const UIContextProvider = ({ children }: TContextProps) => {
     }
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setScrollEnabled(true);
+  };
+
   return (
     <UIContext.Provider
       value={{
@@ -40,6 +46,7 @@ export const UIContextProvider = ({ children }: TContextProps) => {
         setLoading,
         isMenuOpen,
         toggleMenu,
+        closeMenu,
         isScrollEnabled,
         setScrollEnabled,
       }}

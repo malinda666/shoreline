@@ -1,0 +1,80 @@
+@use "@/styles/base/functions" as *;
+
+.link {
+  --size: #{px-to-vw(16)};
+
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+
+  // states
+  &-base {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &-active {
+    color: var(--c-accent-1) !important;
+    opacity: 1;
+    pointer-events: none;
+  }
+  &-inactive {
+    opacity: 0.3;
+  }
+
+  &_arrow {
+    height: calc(0.75 * var(--size));
+    width: calc(0.75 * var(--size));
+    transform-origin: 0% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_arrow_default {
+    transform: scaleX(0.2) translateX(-60%);
+    opacity: 0;
+  }
+  &_arrow_alt {
+    transform: scaleX(1) translateX(-60%);
+    opacity: 1;
+  }
+
+  &_content {
+    padding-inline-start: 0rem;
+    position: relative;
+    transform: translateX(calc(-0.75 * var(--size)));
+    display: flex;
+    align-items: flex-start;
+    > sup {
+      font-size: auto;
+    }
+  }
+
+  &_arrow,
+  &_content {
+    font-family: var(--f-nohemi);
+    transition: all var(--transition);
+  }
+  &_arrow,
+  &_content > span {
+    font-size: var(--size) !important;
+  }
+
+  &:hover {
+    .link_arrow_default {
+      opacity: 1;
+      transform: translateX(0) scale(1) rotateZ(0);
+    }
+    .link_arrow_alt {
+      opacity: 0;
+      transform: translateX(50%) scale(0) rotateZ(0);
+    }
+    .link_content {
+      transform: translateX(0);
+      padding-inline-start: 0.5rem;
+    }
+  }
+}

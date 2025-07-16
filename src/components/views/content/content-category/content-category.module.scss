@@ -11,7 +11,6 @@
   }
 
   .item {
-    // aspect-ratio: 3/4;
     width: var(--slide-width);
     height: calc(var(--h-factor) * var(--slide-width));
     &_inner {

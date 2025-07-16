@@ -2,6 +2,7 @@ export interface INavItem {
   key: string;
   label: string;
   path: string;
+  metadata?: string | number;
 }
 
 export type THeroTypes = "main" | "secondary";
@@ -11,6 +12,7 @@ export interface IUIContext {
   setLoading: Dispatch<SetStateAction<boolean>>;
   isMenuOpen: boolean;
   toggleMenu: () => void;
+  closeMenu: () => void;
   isScrollEnabled: boolean;
   setScrollEnabled: Dispatch<SetStateAction<boolean>>;
 }

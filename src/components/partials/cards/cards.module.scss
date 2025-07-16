@@ -21,12 +21,13 @@
 }
 
 .image_card {
+  --aspect: 3/4;
   position: relative;
   height: 100%;
   .image_wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/3.5;
+    aspect-ratio: var(--aspect);
     display: flex;
     align-items: center;
     justify-content: center;

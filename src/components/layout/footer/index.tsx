@@ -7,12 +7,15 @@ import Star from "@/components/partials/star";
 import SectionTitle from "@/components/partials/section-title";
 import { mainNav, socialNav } from "@/constants/navigation";
 import Paragraph from "@/components/partials/paragraph";
+import Link from "@/components/partials/link";
+import { usePathname } from "next/navigation";
 
 type Props = {
   variant?: "default" | "half";
 };
 
 const Footer = ({ variant = "default" }: Props) => {
+  const pathname = usePathname();
   return (
     <div className={clsx(s.container)}>
       {variant === "default" ? (
@@ -31,6 +34,7 @@ const Footer = ({ variant = "default" }: Props) => {
             line2="Entertainment"
             variant="bold"
             className={s.footer_title}
+            isIndented
           />
           <Paragraph
             content="We welcome you to contact us for more information about any of our
@@ -46,9 +50,15 @@ const Footer = ({ variant = "default" }: Props) => {
             </div>
             <div className={clsx(s.footer_sitemap_links)}>
               {mainNav.map((item) => (
-                <div className="fs-p mb-6" key={item.key}>
-                  <span>{item.label}</span>
-                </div>
+                <Link
+                  text={item.label}
+                  href={item.path}
+                  key={item.key}
+                  className="mb-6"
+                  size={3}
+                  isActive={pathname === item.path}
+                  metadata={item.metadata}
+                />
               ))}
             </div>
           </div>
@@ -58,9 +68,13 @@ const Footer = ({ variant = "default" }: Props) => {
             </div>
             <div className={clsx(s.footer_social_links)}>
               {socialNav.map((item) => (
-                <div className="fs-p mb-6" key={item.key}>
-                  <span>{item.label}</span>
-                </div>
+                <Link
+                  text={item.label}
+                  href={item.path}
+                  key={item.key}
+                  className="mb-6"
+                  size={3}
+                />
               ))}
             </div>
           </div>
