@@ -13,7 +13,9 @@ import ImageCard from "@/components/partials/cards/image-card";
 const Team = () => {
   return (
     <Section className={clsx(s.container)}>
-      <SectionTitle line1="Our Team" line2="" className="mb-2" />
+      <div className="row pb-2">
+        <SectionTitle line1="Our Team" line2="" />
+      </div>
       <Grid columns={4} className="vw pb-1">
         {team.map((row, i) => (
           <Grid.Row key={i}>

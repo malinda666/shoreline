@@ -14,7 +14,9 @@ import s from "./our-services.module.scss";
 const OurServices = () => {
   return (
     <Section>
-      <SectionTitle line1="Our Services" line2="" className="pb-3" />
+      <div className="row pb-3">
+        <SectionTitle line1="Our Services" line2="" />
+      </div>
       <Grid columns={3} className="vw pb-1" aspect={3 / 4} gap={30}>
         {services.map((row, i) => (
           <Grid.Row key={i}>

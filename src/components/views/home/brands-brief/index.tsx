@@ -10,7 +10,11 @@ const BrandBrief = () => {
   return (
     <Section isDark className={clsx(s.container)}>
       <div className="row pb-2">
-        <SectionTitle line1="In Good Company." line2="In Great Cinema." />
+        <SectionTitle
+          line1="In Good Company."
+          line2="In Great Cinema."
+          isIndented
+        />
       </div>
       <div className="pb-2">
         <LogoMarquee />

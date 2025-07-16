@@ -20,6 +20,7 @@ const AboutBrief = () => {
         <SectionTitle
           line1="33 Years of Stories."
           line2="One Endless Horizon."
+          isIndented
         />
       </div>
       <div className={clsx("layout", s.inner)}>

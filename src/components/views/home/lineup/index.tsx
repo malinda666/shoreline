@@ -12,7 +12,11 @@ const Lineup = () => {
   return (
     <Section>
       <div className="row pb-2">
-        <SectionTitle line1="Awarded, applauded," line2="And unforgettable." />
+        <SectionTitle
+          line1="Awarded, applauded,"
+          line2="And unforgettable."
+          isIndented
+        />
         <Button>View full catalog</Button>
       </div>
       <Grid className="pb-2 vw" columns={4}>

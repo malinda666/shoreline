@@ -10,7 +10,9 @@ import React from "react";
 const GlobalPartners = () => {
   return (
     <Section>
-      <SectionTitle line1="Global Release Partners" line2="" className="mb-2" />
+      <div className="row pb-2">
+        <SectionTitle line1="Global Release Partners" line2="" />
+      </div>
       <Grid columns={8} className="vw pb-1" aspect={1 / 1}>
         {globalReleasePartners.map((row, i) => (
           <Grid.Row key={i}>

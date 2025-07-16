@@ -1,6 +1,12 @@
 .container {
   color: inherit;
-  > h3:first-child {
-    padding-left: calc(var(--s-3) + var(--s-4));
+  // flex-direction: column;
+  > h3 {
+    white-space: pre;
+  }
+  &_indent {
+    > h3:first-child {
+      text-indent: 5%;
+    }
   }
 }
