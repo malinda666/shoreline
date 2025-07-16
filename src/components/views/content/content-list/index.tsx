@@ -5,6 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import s from "./content-list.module.scss";
 import Image from "next/image";
+import Grid from "@/components/partials/grid";
 
 type Props = {
   categories: ICategory[];
@@ -45,16 +46,29 @@ const ContentList = ({ categories }: Props) => {
           );
         })}
       </ul>
-      <div className={clsx(s.preview)}>
-        <div className={s.preview_inner}>
-          <Image src="/assets/posters/2.png" alt="preview-1" fill />
-        </div>
-        <div className={s.preview_inner}>
-          <Image src="/assets/posters/1.png" alt="preview-2" fill />
-        </div>
-        <div className={s.preview_inner}>
-          <Image src="/assets/posters/3.png" alt="preview-3" fill />
-        </div>
+      <div className={clsx(s.preview_wrapper)}>
+        <Grid className={clsx(s.preview)} columns={2}>
+          <Grid.Row>
+            <Grid.Item>
+              <div className={s.preview_inner}>
+                <Image src="/assets/posters/2.png" alt="preview-1" fill />
+              </div>
+            </Grid.Item>
+            <Grid.Item>
+              <div className={s.preview_inner}>
+                <Image src="/assets/posters/1.png" alt="preview-1" fill />
+              </div>
+            </Grid.Item>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Item isEmpty />
+            <Grid.Item>
+              <div className={s.preview_inner}>
+                <Image src="/assets/posters/3.png" alt="preview-1" fill />
+              </div>
+            </Grid.Item>
+          </Grid.Row>
+        </Grid>
       </div>
     </div>
   );

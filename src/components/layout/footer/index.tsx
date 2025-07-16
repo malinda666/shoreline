@@ -23,7 +23,7 @@ const Footer = ({ variant = "default" }: Props) => {
           <div className={clsx(s.outro_overlay)}></div>
           <Star className={s.outro_star} />
           <div className={clsx(s.outro_title, "mt-3")}>
-            <h3 className="fs-h3-bold">{`Let's Hang Out Around the Bonfire !`}</h3>
+            <h3 className="fs-h2">{`Let's Hang Out Around the Bonfire !`}</h3>
           </div>
         </div>
       ) : null}
