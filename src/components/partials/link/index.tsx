@@ -5,6 +5,7 @@ import s from "./link.module.scss";
 import { getVWSize } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/context/ui-context";
+import NextLink from "next/link";
 
 type Props = {
   href: string;
@@ -52,10 +53,17 @@ const Link = ({
       }}
     >
       <Arrow className={s.link_arrow_default} />
-      <div onClick={navigate} className={clsx(s.link_content)}>
+      <NextLink
+        href={href}
+        onClick={(e) => {
+          e.preventDefault();
+          navigate();
+        }}
+        className={clsx(s.link_content)}
+      >
         <span>{text}</span>
         {metadata && <sup>({metadata})</sup>}
-      </div>
+      </NextLink>
       {variant === "alt" && <Arrow className={s.link_arrow_alt} />}
     </div>
   );

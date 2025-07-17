@@ -18,6 +18,10 @@ body {
     opacity: 0.04;
     animation: 6s steps(10) 0s infinite normal none running grain;
   }
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 @keyframes grain {

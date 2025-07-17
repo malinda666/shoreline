@@ -9,6 +9,7 @@ import SectionTitle from "@/components/partials/section-title";
 import Grid from "@/components/partials/grid";
 import { team } from "@/constants/team";
 import ImageCard from "@/components/partials/cards/image-card";
+import Paragraph from "@/components/partials/paragraph";
 
 type IData = IContent;
 
@@ -23,17 +24,42 @@ const ContentSingle = ({ data }: Props) => {
   return (
     <div className={clsx(s.container)}>
       <Section>
-        <div className="row">
-          <SectionTitle line1={data.title} line2="" variant="bold" />
-        </div>
-        <div className={clsx(s.header, "layout pt-4")}>
-          <div className={clsx(s.header_year)}>{data.year}</div>
-          <div className={clsx(s.header_runtime)}>{data.runtime} min</div>
-          <div className={clsx(s.header_tags)}>
-            <div className="fs-body-sm">{data.format}</div>
-            <div className="fs-body-sm">{data.language}</div>
+        <div className={clsx(s.content_hero, "layout pb-2")}>
+          <div className={s.content_hero_left}>
+            <SectionTitle
+              line1={data.title}
+              line2=""
+              variant="bold"
+              className={s.content_hero_title}
+            />
+            <div className={clsx(s.content_hero_left_meta, "pt-4")}>
+              <div className={clsx(s.header_year)}>{data.year}</div>
+              <div className={clsx(s.header_runtime)}>{data.runtime} min</div>
+            </div>
+            <div className={clsx(s.content_hero_left_tags, "pt-5 fs-body-sm")}>
+              <div className="fs-body-sm">{data.format}</div>
+              <div className="fs-body-sm">{data.language}</div>
+            </div>
+            <div className={clsx(s.content_hero_description, "pt-2 fs-p")}>
+              <Paragraph content={data.description} indented />
+            </div>
+          </div>
+          <div className={s.content_hero_right}>
+            {data.posterUrl ? (
+              <Image
+                src={`/assets/posters${data.posterUrl}`}
+                alt={data.title}
+                layout="fill"
+                objectFit="contain"
+              />
+            ) : (
+              <div className="bg-gray-200 h-72 w-full flex items-center justify-center text-gray-500">
+                No poster
+              </div>
+            )}
           </div>
         </div>
+
         <div className={clsx(s.trailer, "row pt-3")}>
           {data.trailerUrl && (
             <div className={clsx(s.trailer_inner)}>
@@ -52,35 +78,23 @@ const ContentSingle = ({ data }: Props) => {
             </div>
           )}
         </div>
-        <div className={clsx(s.description, "layout pt-2")}>
-          <div className={clsx(s.description_image)}>
-            {data.posterUrl ? (
-              <Image
-                src={`/assets/posters${data.posterUrl}`}
-                alt={data.title}
-                layout="fill"
-                objectFit="contain"
-              />
-            ) : (
-              <div className="bg-gray-200 h-72 w-full flex items-center justify-center text-gray-500">
-                No poster
-              </div>
-            )}
-          </div>
-          <div className={clsx(s.description_para)}>
-            <p className="">{data.description}</p>
-          </div>
-        </div>
       </Section>
 
       <Section>
         {data.synopsis ? (
-          <div className="row pb-2">
-            <SectionTitle line1="Synopsis" line2="" />
-            <div className={clsx(s.synopsis)}>
-              <p className="">{data.synopsis}</p>
+          <>
+            <div className="row pb-3">
+              <SectionTitle line1="Synopsis" line2="" />
             </div>
-          </div>
+
+            <div className={clsx(s.synopsis, "row pb-2")}>
+              <Paragraph
+                content={data.synopsis}
+                indented
+                className={s.synopsis_inner}
+              />
+            </div>
+          </>
         ) : null}
         <div className="row pb-2">
           <SectionTitle line1="Cast" line2="" />

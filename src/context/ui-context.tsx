@@ -8,6 +8,7 @@ const initialState: IUIContext = {
   setLoading: () => {},
   isMenuOpen: false,
   toggleMenu: () => {},
+  openMenu: () => {},
   closeMenu: () => {},
   isScrollEnabled: true,
   setScrollEnabled: () => {},
@@ -26,17 +27,19 @@ export const UIContextProvider = ({ children }: TContextProps) => {
 
   const toggleMenu = () => {
     if (isMenuOpen) {
-      setMenuOpen(false);
-      setScrollEnabled(true);
+      closeMenu();
     } else {
-      setMenuOpen(true);
-      setScrollEnabled(false);
+      openMenu();
     }
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
     setScrollEnabled(true);
+  };
+  const openMenu = () => {
+    setMenuOpen(true);
+    setScrollEnabled(false);
   };
 
   return (
@@ -46,6 +49,7 @@ export const UIContextProvider = ({ children }: TContextProps) => {
         setLoading,
         isMenuOpen,
         toggleMenu,
+        openMenu,
         closeMenu,
         isScrollEnabled,
         setScrollEnabled,

@@ -1,26 +1,43 @@
 @use "@/styles/base/functions" as *;
 
 .container {
-  .header {
-    &_year {
-      grid-column: 1/2;
-    }
-    &_runtime {
-      grid-column: 2/4;
-    }
-    &_tags {
-      grid-column: 13/-1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 0.5rem;
-      > div {
-        border-radius: 1.25rem;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--c-accent-2);
+  .content_hero {
+    position: relative;
+    &_left {
+      grid-column: 1/12;
+      grid-row: 1;
+      &_meta {
+      }
+      &_tags {
+        > div {
+          border-radius: 1.25rem;
+          padding: 0.5rem 1rem;
+          border: 1px solid var(--c-accent-2);
+        }
+      }
+      &_meta,
+      &_tags {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
       }
     }
+    &_description {
+      max-width: #{px-to-vw(650)};
+    }
+    &_right {
+      grid-column: 11/-1;
+      grid-row: 1;
+      position: relative;
+      height: 100%;
+      position: relative;
+      contain: paint;
+      aspect-ratio: 3/4;
+      // width: #{px-to-vw(300)};
+    }
   }
+
   .trailer {
     aspect-ratio: 16/9;
     &_inner {
@@ -36,11 +53,11 @@
       aspect-ratio: 3/4;
       width: #{px-to-vw(300)};
     }
-    &_para {
-      grid-column: 8/16;
-    }
   }
 
   .synopsis {
+    &_inner {
+      max-width: #{px-to-vw(850)};
+    }
   }
 }

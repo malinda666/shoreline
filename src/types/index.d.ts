@@ -12,6 +12,7 @@ export interface IUIContext {
   setLoading: Dispatch<SetStateAction<boolean>>;
   isMenuOpen: boolean;
   toggleMenu: () => void;
+  openMenu: () => void;
   closeMenu: () => void;
   isScrollEnabled: boolean;
   setScrollEnabled: Dispatch<SetStateAction<boolean>>;

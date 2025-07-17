@@ -1,19 +1,80 @@
-import React from "react";
+import React, {
+  useRef,
+  // useState
+} from "react";
 
 import { mainNav, socialNav } from "@/constants/navigation";
 import clsx from "clsx";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 import s from "./header.module.scss";
 import { useUI } from "@/context/ui-context";
 import Link from "@/components/partials/link";
 import { usePathname } from "next/navigation";
+import MenuButton from "./menu-button";
 
 const Header = () => {
-  const { isMenuOpen, toggleMenu } = useUI();
+  const header = useRef<HTMLDivElement>(null);
+
+  const { isMenuOpen } = useUI();
   const pathname = usePathname();
 
+  // const [isNavVisible, setNavVisible] = useState(false);
+
+  useGSAP(
+    () => {
+      if (!header.current) return;
+
+      if (isMenuOpen) {
+        gsap
+          .timeline({
+            defaults: { duration: 1 },
+            onStart: () => {
+              // setNavVisible(true);
+            },
+          })
+          .to(header.current, {
+            backgroundColor: "var(--c-off-black)",
+          })
+          .to(
+            header.current.querySelector("aside"),
+            {
+              clipPath: "inset(0% 0% 0% 0%)",
+              ease: "power3.inOut",
+              duration: 1.25,
+            },
+            0
+          );
+      } else {
+        gsap
+          .timeline({
+            onComplete: () => {
+              // setNavVisible(false);
+            },
+          })
+          .to(header.current, {
+            duration: 0.7,
+            backgroundColor: "transparent",
+          })
+          .to(
+            header.current.querySelector("aside"),
+            {
+              clipPath: "inset(0% 0% 100% 0%)",
+              ease: "power3.inOut",
+              duration: 1.25,
+            },
+            0
+          );
+      }
+    },
+    { dependencies: [isMenuOpen], scope: header }
+  );
+
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={header}>
       <header
         className={clsx(
           s.container,
@@ -25,19 +86,12 @@ const Header = () => {
           <div className="fs-body">
             <span>LOGO</span>
           </div>
-          <div className={clsx("fs-body", s.menu_trigger)} onClick={toggleMenu}>
-            <span>{isMenuOpen ? "Close" : "Menu"}</span>
-          </div>
+          <MenuButton />
         </div>
       </header>
-      {isMenuOpen && (
-        <nav
-          className="layout"
-          style={{
-            transform: isMenuOpen ? "translateY(0%)" : "translateY(-100%)",
-            transition: "transform 0.5s ease",
-          }}
-        >
+
+      <aside>
+        <nav className="layout">
           <div className={s.nav_main}>
             <ul>
               {mainNav.map((item) => (
@@ -73,14 +127,8 @@ const Header = () => {
             </ul>
           </div>
         </nav>
-      )}
-      <div
-        className={s.background}
-        style={{
-          transform: isMenuOpen ? "translateY(0%)" : "translateY(-100%)",
-          transition: "transform 0.5s ease",
-        }}
-      />
+      </aside>
+      {/* <div className={s.background} /> */}
     </div>
   );
 };
