@@ -2,13 +2,17 @@
 
 .link {
   --size: #{px-to-vw(16)};
+  --factor: 0.5;
+  --y-percent: 60%;
+  --x-percent: 100%;
 
   position: relative;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: max-content;
+  // contain: paint;
 
   // states
   &-base {
@@ -24,56 +28,63 @@
     opacity: 0.3;
   }
 
+  // Arrow element
   &_arrow {
-    height: calc(0.75 * var(--size));
-    width: calc(0.75 * var(--size));
+    height: calc(var(--factor) * var(--size));
+    width: calc(var(--factor) * var(--size));
     transform-origin: 0% 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--f-nohemi);
+    font-size: var(--size) !important;
+    transition: all var(--transition);
+
+    &_default {
+      opacity: 0;
+      transform: translate3d(calc(-1 * var(--x-percent)), var(--y-percent), 0)
+        scale3d(0, 0, 1);
+    }
+
+    &_alt {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
   }
 
-  &_arrow_default {
-    transform: scaleX(0.2) translateX(-60%);
-    opacity: 0;
-  }
-  &_arrow_alt {
-    transform: scaleX(1) translateX(-60%);
-    opacity: 1;
-  }
-
+  // Content element
   &_content {
-    padding-inline-start: 0rem;
     position: relative;
-    transform: translateX(calc(-0.75 * var(--size)));
     display: flex;
     align-items: flex-start;
+    font-family: var(--f-nohemi);
+    font-size: var(--size) !important;
+    transform: translate3d(calc(-1 * var(--factor) * var(--size)), 0, 0);
+    transition: all var(--transition);
+
     > sup {
       font-size: auto;
     }
-  }
 
-  &_arrow,
-  &_content {
-    font-family: var(--f-nohemi);
-    transition: all var(--transition);
+    > span {
+      font-size: var(--size) !important;
+    }
   }
-  &_arrow,
-  &_content > span {
-    font-size: var(--size) !important;
-  }
-
+  // Hover effects
   &:hover {
     .link_arrow_default {
       opacity: 1;
-      transform: translateX(0) scale(1) rotateZ(0);
+      transform: translate3d(0, 0, 0);
     }
+
     .link_arrow_alt {
       opacity: 0;
-      transform: translateX(50%) scale(0) rotateZ(0);
+      transform: translate3d(var(--x-percent), calc(-2 * var(--y-percent)), 0)
+        scale3d(0, 0, 1);
     }
+
     .link_content {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
       padding-inline-start: 0.5rem;
     }
   }

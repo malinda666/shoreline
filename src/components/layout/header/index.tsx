@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  // useState
-} from "react";
+import React, { useRef } from "react";
 
 import { mainNav, socialNav } from "@/constants/navigation";
 import clsx from "clsx";
@@ -15,62 +12,29 @@ import { useUI } from "@/context/ui-context";
 import Link from "@/components/partials/link";
 import { usePathname } from "next/navigation";
 import MenuButton from "./menu-button";
+import MenuAnimation from "@/animations/menu";
 
 const Header = () => {
   const header = useRef<HTMLDivElement>(null);
 
-  const { isMenuOpen } = useUI();
+  const { isMenuOpen, isFirstLoad } = useUI();
   const pathname = usePathname();
-
-  // const [isNavVisible, setNavVisible] = useState(false);
 
   useGSAP(
     () => {
       if (!header.current) return;
+      const menuAnimation = new MenuAnimation(header.current);
 
+      if (isFirstLoad) {
+        menuAnimation.init();
+      }
       if (isMenuOpen) {
-        gsap
-          .timeline({
-            defaults: { duration: 1 },
-            onStart: () => {
-              // setNavVisible(true);
-            },
-          })
-          .to(header.current, {
-            backgroundColor: "var(--c-off-black)",
-          })
-          .to(
-            header.current.querySelector("aside"),
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
-              ease: "power3.inOut",
-              duration: 1.25,
-            },
-            0
-          );
+        menuAnimation.open();
       } else {
-        gsap
-          .timeline({
-            onComplete: () => {
-              // setNavVisible(false);
-            },
-          })
-          .to(header.current, {
-            duration: 0.7,
-            backgroundColor: "transparent",
-          })
-          .to(
-            header.current.querySelector("aside"),
-            {
-              clipPath: "inset(0% 0% 100% 0%)",
-              ease: "power3.inOut",
-              duration: 1.25,
-            },
-            0
-          );
+        menuAnimation.close();
       }
     },
-    { dependencies: [isMenuOpen], scope: header }
+    { dependencies: [isMenuOpen, isFirstLoad], scope: header }
   );
 
   return (
@@ -128,7 +92,6 @@ const Header = () => {
           </div>
         </nav>
       </aside>
-      {/* <div className={s.background} /> */}
     </div>
   );
 };

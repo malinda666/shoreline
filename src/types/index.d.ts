@@ -8,6 +8,7 @@ export interface INavItem {
 export type THeroTypes = "main" | "secondary";
 
 export interface IUIContext {
+  isFirstLoad: boolean;
   isLoading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
   isMenuOpen: boolean;

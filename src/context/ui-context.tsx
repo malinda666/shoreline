@@ -1,9 +1,16 @@
 "use client";
 
 import { IUIContext } from "@/types";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const initialState: IUIContext = {
+  isFirstLoad: true,
   isLoading: false,
   setLoading: () => {},
   isMenuOpen: false,
@@ -24,6 +31,13 @@ export const UIContextProvider = ({ children }: TContextProps) => {
   const [isLoading, setLoading] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isScrollEnabled, setScrollEnabled] = useState(false);
+  const [isFirstLoad, setFirstLoad] = useState(true);
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      setFirstLoad(false);
+    }
+  }, [isFirstLoad]);
 
   const toggleMenu = () => {
     if (isMenuOpen) {
@@ -45,6 +59,7 @@ export const UIContextProvider = ({ children }: TContextProps) => {
   return (
     <UIContext.Provider
       value={{
+        isFirstLoad,
         isLoading,
         setLoading,
         isMenuOpen,

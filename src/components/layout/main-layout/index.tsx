@@ -55,12 +55,13 @@ const MainLayout = ({ children }: Props) => {
         <div className={s.container}>
           <Header />
           <main
-            style={{
-              transform: isMenuOpen
-                ? "translateY(calc(2 * var(--s-1)))"
-                : "translateY(0%)",
-              transition: "transform 0.5s ease",
-            }}
+            id="main-layout"
+            // style={{
+            //   transform: isMenuOpen
+            //     ? "translateY(calc(2 * var(--s-1)))"
+            //     : "translateY(0%)",
+            //   transition: "transform 0.5s ease",
+            // }}
           >
             {children}
           </main>
