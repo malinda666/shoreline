@@ -1,6 +1,6 @@
 .container {
   position: relative;
 }
-.indented {
-  text-indent: 10%;
+.indented > div:first-child {
+  padding-inline-start: 10%;
 }

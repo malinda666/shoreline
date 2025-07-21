@@ -1,4 +1,7 @@
 .container {
   width: var(--s-3);
   height: var(--s-3);
+  font-size: var(--s-3);
+  will-change: transform;
+  transform-origin: 50% 50%;
 }

@@ -9,18 +9,20 @@ export default class MenuAnimation {
     items: HTMLElement[];
   };
   main: HTMLElement;
+  isAnimating: boolean;
 
   constructor(container: HTMLElement) {
     this.container = container;
     this.dom = this.getDom();
     this.main = document.querySelector("main#main-layout") as HTMLElement;
+    this.isAnimating = false;
   }
 
   getDom() {
     return {
       menuWrap: this.container.querySelector("aside"),
       items: gsap.utils.toArray(
-        this.container.querySelectorAll("ul li")
+        this.container.querySelectorAll("[data-animate='true']")
       ) as HTMLElement[],
     };
   }
@@ -28,6 +30,7 @@ export default class MenuAnimation {
   init() {
     const { menuWrap, items } = this.dom;
     if (!menuWrap) return;
+    this.isAnimating = true;
     gsap.killTweensOf([menuWrap, items]);
     document.body.classList.remove("no-scroll");
     gsap.set(menuWrap, {
@@ -40,9 +43,16 @@ export default class MenuAnimation {
   open() {
     const { menuWrap, items } = this.dom;
     if (!menuWrap) return;
+    if (this.isAnimating) return;
+    this.isAnimating = true;
     gsap.killTweensOf([menuWrap, items]);
 
-    const tl = gsap.timeline({ defaults: { ease: EASE1, duration: 1 } });
+    const tl = gsap.timeline({
+      defaults: { ease: EASE1, duration: 1 },
+      onComplete: () => {
+        this.isAnimating = false;
+      },
+    });
     tl.set(menuWrap, {
       clipPath: "inset(0% 0% 100% 0%)",
       autoAlpha: 1,
@@ -84,11 +94,15 @@ export default class MenuAnimation {
     const { menuWrap, items } = this.dom;
     if (!menuWrap) return;
 
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+
     gsap.killTweensOf([menuWrap, items]);
     const tl = gsap.timeline({
       onComplete: () => {
         gsap.set(menuWrap, { autoAlpha: 0, pointerEvents: "none" });
         gsap.to([this.main, items], { clearProps: "all" });
+        this.isAnimating = false;
       },
     });
     tl.to(items, {

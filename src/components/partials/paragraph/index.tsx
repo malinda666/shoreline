@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import s from "./paragraph.module.scss";
+import SplitText from "../split-text";
 
 type Props = {
   content: string;
@@ -13,14 +14,15 @@ type Props = {
 const Paragraph = ({ content, indented, className, size }: Props) => {
   return (
     <div className={clsx(className)}>
-      <p
+      <SplitText
+        text={content}
         className={clsx(
           size === "sm" ? "fs-body" : "fs-p",
           indented && s.indented
         )}
-      >
-        {content}
-      </p>
+        as="p"
+        type="lines"
+      />
     </div>
   );
 };

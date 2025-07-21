@@ -1,6 +1,10 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ReactLenis } from "lenis/react";
+import { ScrollTrigger, SplitText } from "gsap/all";
+
 import { Inter } from "next/font/google";
 import localfont from "next/font/local";
 import Header from "../header";
@@ -36,14 +40,30 @@ type Props = {
   children: ReactNode;
 };
 
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
 const MainLayout = ({ children }: Props) => {
   const { isScrollEnabled, isMenuOpen } = useUI();
   const pathname = usePathname();
+  const wrapperEl = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lenisRef = useRef<any>(null);
 
   const isContentPages = pathname.includes("content");
 
+  useEffect(() => {
+    function update(time: number) {
+      lenisRef.current?.lenis?.raf(time * 1000);
+    }
+
+    gsap.ticker.add(update);
+
+    return () => gsap.ticker.remove(update);
+  }, []);
+
   return (
     <html lang="en">
+      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
       <body
         className={clsx(
           inter.variable,
@@ -52,20 +72,12 @@ const MainLayout = ({ children }: Props) => {
           isMenuOpen ? "nav-open" : "nav-closed"
         )}
       >
-        <div className={s.container}>
+        <div className={s.container} ref={wrapperEl}>
           <Header />
-          <main
-            id="main-layout"
-            // style={{
-            //   transform: isMenuOpen
-            //     ? "translateY(calc(2 * var(--s-1)))"
-            //     : "translateY(0%)",
-            //   transition: "transform 0.5s ease",
-            // }}
-          >
+          <main id="main-layout">
             {children}
+            <Footer variant={isContentPages ? "half" : "default"} />
           </main>
-          <Footer variant={isContentPages ? "half" : "default"} />
         </div>
       </body>
     </html>

@@ -48,7 +48,8 @@
 
     &_alt {
       opacity: 1;
-      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      transform: translate3d(calc(-0.5 * var(--x-percent)), 0, 0)
+        scale3d(1, 1, 1);
     }
   }
 
@@ -79,7 +80,11 @@
 
     .link_arrow_alt {
       opacity: 0;
-      transform: translate3d(var(--x-percent), calc(-2 * var(--y-percent)), 0)
+      transform: translate3d(
+          calc(0.5 * var(--x-percent)),
+          calc(-2 * var(--y-percent)),
+          0
+        )
         scale3d(0, 0, 1);
     }
 

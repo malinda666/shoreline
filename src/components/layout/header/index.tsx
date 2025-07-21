@@ -59,7 +59,7 @@ const Header = () => {
           <div className={s.nav_main}>
             <ul>
               {mainNav.map((item) => (
-                <li key={item.key}>
+                <li key={item.key} data-animate>
                   <Link
                     text={item.label}
                     href={item.path}
@@ -75,10 +75,12 @@ const Header = () => {
           </div>
 
           <div className={s.nav_secondary}>
-            <div className="fs-body">Connect</div>
+            <div className="fs-body" data-animate>
+              Connect
+            </div>
             <ul>
               {socialNav.map((item) => (
-                <li key={item.key}>
+                <li key={item.key} data-animate>
                   <Link
                     text={item.label}
                     href={item.path}

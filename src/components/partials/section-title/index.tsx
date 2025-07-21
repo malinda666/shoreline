@@ -2,6 +2,7 @@ import React from "react";
 
 import s from "./section-title.module.scss";
 import clsx from "clsx";
+import SplitText from "../split-text";
 
 type Props = {
   line1: string;
@@ -27,12 +28,18 @@ const SectionTitle = ({
         className
       )}
     >
-      <h3 className={clsx(variant === "bold" ? "fs-h3-bold" : "fs-h3")}>
-        {line1}
-      </h3>
-      <h3 className={clsx(variant === "bold" ? "fs-h3-bold" : "fs-h3")}>
-        {line2}
-      </h3>
+      <SplitText
+        text={line1}
+        className={clsx(variant === "bold" ? "fs-h3-bold" : "fs-h3")}
+        as="h3"
+        // type="words"
+      />
+      <SplitText
+        text={line2}
+        className={clsx(variant === "bold" ? "fs-h3-bold" : "fs-h3")}
+        as="h3"
+        // type="words"
+      />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import Section from "@/components/layout/section";
 import { THeroTypes } from "@/types";
 import Paragraph from "@/components/partials/paragraph";
 import Star from "@/components/partials/star";
+import SplitText from "@/components/partials/split-text";
 
 type Props = {
   titleLine1: string;
@@ -36,11 +37,27 @@ const Hero = ({
           {isMain ? (
             <>
               <div className={clsx(s.sub_title, "mb-2")}>
-                <h3 className="fs-p">{subtitle}</h3>
+                <SplitText
+                  className="fs-p"
+                  as="h3"
+                  type="words"
+                  text={subtitle}
+                  trigger="tl"
+                />
               </div>
               <div className={s.title}>
-                <h1 className={clsx("fs-h1")}>{titleLine1}</h1>
-                <h1 className={clsx("fs-h1")}>{titleLine2}</h1>
+                <SplitText
+                  className={clsx("fs-h1")}
+                  as="h1"
+                  text={titleLine1}
+                  trigger="tl"
+                />
+                <SplitText
+                  className={clsx("fs-h1")}
+                  as="h1"
+                  text={titleLine2}
+                  trigger="tl"
+                />
               </div>
             </>
           ) : (

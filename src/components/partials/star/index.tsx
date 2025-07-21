@@ -1,19 +1,43 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
+import gsap from "gsap";
 
 import s from "./star.module.scss";
 import clsx from "clsx";
+import { useGSAP } from "@gsap/react";
 
 type Props = {
   className?: string;
 };
 
 const Star = ({ className }: Props) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!wrapperRef.current) return;
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            scrub: 1,
+            start: "clamp(top bottom)",
+          },
+        })
+        .to(wrapperRef.current, {
+          rotate: 90,
+        });
+    },
+    { scope: wrapperRef }
+  );
+
   return (
-    <div className={clsx(s.container, className)}>
+    <div className={clsx(s.container, className)} ref={wrapperRef}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="75"
-        height="75"
+        width="1em"
+        height="1em"
         viewBox="0 0 75 75"
         fill="none"
       >
