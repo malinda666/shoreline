@@ -33,7 +33,7 @@ const Sticky = ({ children, className }: Props) => {
           trigger: wrapperRef.current,
           start,
           end,
-          markers: true,
+          //   markers: true,
           pin: true,
           pinSpacing: false,
           pinReparent: true,
