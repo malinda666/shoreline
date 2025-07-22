@@ -39,7 +39,7 @@ const Hero = ({
               <div className={clsx(s.sub_title, "mb-2")}>
                 <SplitText
                   className="fs-p"
-                  as="h3"
+                  as="h4"
                   type="words"
                   text={subtitle}
                   trigger="tl"

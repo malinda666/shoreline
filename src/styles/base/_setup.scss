@@ -36,6 +36,14 @@ $transition: cubic-bezier(0.23, 1, 0.32, 1) 700ms;
   .mb-#{$label} {
     margin-bottom: #{px-to-vw($size)};
   }
+  .mx-#{$label} {
+    margin-left: #{px-to-vw($size)};
+    margin-right: #{px-to-vw($size)};
+  }
+  .my-#{$label} {
+    margin-bottom: #{px-to-vw($size)};
+    margin-top: #{px-to-vw($size)};
+  }
   .p-#{$label} {
     padding: #{px-to-vw($size)};
   }
@@ -50,6 +58,14 @@ $transition: cubic-bezier(0.23, 1, 0.32, 1) 700ms;
   }
   .pb-#{$label} {
     padding-bottom: #{px-to-vw($size)};
+  }
+  .px-#{$label} {
+    padding-left: #{px-to-vw($size)};
+    padding-right: #{px-to-vw($size)};
+  }
+  .py-#{$label} {
+    padding-bottom: #{px-to-vw($size)};
+    padding-top: #{px-to-vw($size)};
   }
 }
 

@@ -48,7 +48,7 @@ const Header = () => {
       >
         <div className={s.inner}>
           <div className="fs-body">
-            <span>LOGO</span>
+            <span>SHORELINE</span>
           </div>
           <MenuButton />
         </div>

@@ -10,7 +10,7 @@ import clsx from "clsx";
 import s from "./split-text.module.scss";
 import _SplitText from "gsap/SplitText";
 import gsap from "gsap";
-import { revealText } from "@/animations/text";
+import { revealTitle } from "@/animations/text";
 
 type Props<T extends ElementType> = {
   text: string;
@@ -35,6 +35,18 @@ const SplitText = <T extends React.ElementType = "div">({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const wrapper: any = useRef<HTMLElement | null>(null);
 
+  const getElementType = () => {
+    switch (as) {
+      case "h1":
+      case "h2":
+      case "h3":
+        return "title";
+
+      default:
+        return "paragraph";
+    }
+  };
+
   useEffect(() => {
     if (wrapper.current) {
       const split = _SplitText.create(wrapper.current, {
@@ -46,7 +58,7 @@ const SplitText = <T extends React.ElementType = "div">({
       });
 
       if (trigger === "tl") {
-        revealText(split[type]);
+        revealTitle(split[type], getElementType());
       } else {
         gsap
           .timeline({
@@ -55,10 +67,10 @@ const SplitText = <T extends React.ElementType = "div">({
               start: "top bottom",
             },
           })
-          .add(revealText(split[type]), 0);
+          .add(revealTitle(split[type], getElementType()), 0);
       }
     }
-  }, [type]);
+  }, [type, trigger]);
 
   return (
     <Element className={clsx(s.container, className)} {...rest} ref={wrapper}>

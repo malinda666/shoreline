@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import s from "./about-brief.module.scss";
 import Section from "@/components/layout/section";
 import clsx from "clsx";
@@ -9,8 +9,11 @@ import { StatCard } from "@/components/partials/cards";
 import SectionTitle from "@/components/partials/section-title";
 import Paragraph from "@/components/partials/paragraph";
 import Link from "@/components/partials/link";
+import Sticky from "@/components/partials/sticky";
 
 const AboutBrief = () => {
+  const pinRef = useRef<HTMLDivElement>(null);
+
   return (
     <Section className={clsx(s.container, "pb-2")}>
       <div className={clsx("row pb-2", s.deco)}>
@@ -24,12 +27,12 @@ const AboutBrief = () => {
         />
       </div>
       <div className={clsx("layout", s.inner)}>
-        <div className={s.cards}>
+        <div className={s.cards} ref={pinRef}>
           <StatCard title="300+" subtitle="Films in our  catalogue" />
           <StatCard title="15+" subtitle="Major media markets" />
           <StatCard title="50+" subtitle="Academy & Spirit award nominations" />
         </div>
-        <div className={s.content_wrap}>
+        <Sticky className={s.content_wrap}>
           <Paragraph
             content="Shoreline Entertainment is a leading global film sales company, home
             to producer Morris Ruskin. With premieres at Sundance, TIFF,
@@ -45,7 +48,7 @@ const AboutBrief = () => {
             className={s.cta}
             variant="alt"
           />
-        </div>
+        </Sticky>
       </div>
     </Section>
   );
