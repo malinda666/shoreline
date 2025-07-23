@@ -4,6 +4,7 @@ import React, {
   ComponentPropsWithoutRef,
   ElementType,
   useEffect,
+  useMemo,
   useRef,
 } from "react";
 import clsx from "clsx";
@@ -11,13 +12,16 @@ import s from "./split-text.module.scss";
 import _SplitText from "gsap/SplitText";
 import gsap from "gsap";
 import { revealTitle } from "@/animations/text";
+import { useUI } from "@/context/ui-context";
+import { TSplitTextTrigger, TSplitTextType } from "@/types";
 
 type Props<T extends ElementType> = {
   text: string;
   as?: T;
   className?: string;
-  type?: "chars" | "words" | "lines";
-  trigger?: "tl" | "scroll";
+  type?: TSplitTextType;
+  trigger?: TSplitTextTrigger;
+  position?: number | string;
 } & Omit<ComponentPropsWithoutRef<T>, "as">;
 
 gsap.registerPlugin(_SplitText);
@@ -28,52 +32,60 @@ const SplitText = <T extends React.ElementType = "div">({
   className,
   type = "chars",
   trigger = "scroll",
+  position = 0,
   ...rest
 }: Props<T>) => {
   const Element = as || "div";
+  const wrapperRef = useRef<HTMLElement | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const wrapper: any = useRef<HTMLElement | null>(null);
+  const { addToIntroTimeline } = useUI();
 
-  const getElementType = () => {
-    switch (as) {
-      case "h1":
-      case "h2":
-      case "h3":
-        return "title";
-
-      default:
-        return "paragraph";
+  const elementType = useMemo(() => {
+    if (typeof as === "string") {
+      return ["h1", "h2", "h3"].includes(as) ? "title" : "paragraph";
     }
-  };
+    return "paragraph";
+  }, [as]);
 
   useEffect(() => {
-    if (wrapper.current) {
-      const split = _SplitText.create(wrapper.current, {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        type: type as any,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        mask: type as any,
-        reduceWhiteSpace: false,
-      });
+    if (!wrapperRef.current) return;
+    const split = _SplitText.create(wrapperRef.current, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      type: type as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mask: type as any,
+    });
 
-      if (trigger === "tl") {
-        revealTitle(split[type], getElementType());
-      } else {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: wrapper.current,
-              start: "top bottom",
-            },
-          })
-          .add(revealTitle(split[type], getElementType()), 0);
-      }
+    const targets = split[type];
+    const animation = revealTitle(targets, elementType);
+
+    if (trigger === "tl") {
+      revealTitle(split[type], elementType);
+    } else if (trigger === "intro") {
+      addToIntroTimeline(() => animation, position);
+    } else {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top bottom",
+          },
+        })
+        .add(animation, 0);
     }
-  }, [type, trigger]);
+
+    return () => {
+      split.revert?.();
+    };
+  }, [type, trigger, position, elementType]);
 
   return (
-    <Element className={clsx(s.container, className)} {...rest} ref={wrapper}>
+    <Element
+      className={clsx(s.container, className)}
+      {...rest}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={wrapperRef as any}
+    >
       {text}
     </Element>
   );

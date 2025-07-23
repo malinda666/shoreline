@@ -4,7 +4,7 @@ import React from "react";
 import s from "./hero.module.scss";
 import clsx from "clsx";
 import Section from "@/components/layout/section";
-import { THeroTypes } from "@/types";
+import { THeroType } from "@/types";
 import Paragraph from "@/components/partials/paragraph";
 import Star from "@/components/partials/star";
 import SplitText from "@/components/partials/split-text";
@@ -13,7 +13,7 @@ type Props = {
   titleLine1: string;
   titleLine2: string;
   subtitle: string;
-  mode?: THeroTypes;
+  mode?: THeroType;
 };
 
 const Hero = ({
@@ -42,7 +42,8 @@ const Hero = ({
                   as="h4"
                   type="words"
                   text={subtitle}
-                  trigger="tl"
+                  trigger="intro"
+                  position={0}
                 />
               </div>
               <div className={s.title}>
@@ -50,21 +51,35 @@ const Hero = ({
                   className={clsx("fs-h1")}
                   as="h1"
                   text={titleLine1}
-                  trigger="tl"
+                  trigger="intro"
+                  position="<0.4"
                 />
                 <SplitText
                   className={clsx("fs-h1")}
                   as="h1"
                   text={titleLine2}
-                  trigger="tl"
+                  trigger="intro"
+                  position="<0.2"
                 />
               </div>
             </>
           ) : (
             <>
               <div className={s.title}>
-                <h1 className={clsx("fs-h2-bold")}>{titleLine1}</h1>
-                <h1 className={clsx("fs-h2-bold")}>{titleLine2}</h1>
+                <SplitText
+                  className={clsx("fs-h2-bold")}
+                  as="h2"
+                  text={titleLine1}
+                  trigger="intro"
+                  position="0"
+                />
+                <SplitText
+                  className={clsx("fs-h2-bold")}
+                  as="h2"
+                  text={titleLine2}
+                  trigger="intro"
+                  position="<0.2"
+                />
               </div>
               <div className={clsx(s.sub_title, "layout--full pt-2")}>
                 <Star className={s.sub_title_deco} />
@@ -72,6 +87,8 @@ const Hero = ({
                   content={subtitle}
                   className={clsx(s.sub_title_para)}
                   indented
+                  trigger="intro"
+                  position="<0.4"
                 />
               </div>
             </>

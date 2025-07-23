@@ -6,7 +6,7 @@ import { getVWSize } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/context/ui-context";
 import NextLink from "next/link";
-import { Arrow2 } from "../arrows";
+import { Arrow3 } from "../arrows";
 
 type Props = {
   href: string;
@@ -53,7 +53,7 @@ const Link = ({
         ["--size" as any]: getVWSize(size),
       }}
     >
-      <Arrow2 className={clsx(s.link_arrow, s.link_arrow_default)} />
+      <Arrow3 className={clsx(s.link_arrow, s.link_arrow_default)} />
       <NextLink
         href={href}
         onClick={(e) => {
@@ -66,7 +66,7 @@ const Link = ({
         {metadata && <sup>({metadata})</sup>}
       </NextLink>
       {variant === "alt" && (
-        <Arrow2 className={clsx(s.link_arrow, s.link_arrow_alt)} />
+        <Arrow3 className={clsx(s.link_arrow, s.link_arrow_alt)} />
       )}
     </div>
   );

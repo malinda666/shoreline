@@ -9,6 +9,7 @@ import { mainNav, socialNav } from "@/constants/navigation";
 import Paragraph from "@/components/partials/paragraph";
 import Link from "@/components/partials/link";
 import { usePathname } from "next/navigation";
+import SplitText from "@/components/partials/split-text";
 
 type Props = {
   variant?: "default" | "half";
@@ -23,7 +24,11 @@ const Footer = ({ variant = "default" }: Props) => {
           <div className={clsx(s.outro_overlay)}></div>
           <Star className={s.outro_star} />
           <div className={clsx(s.outro_title, "mt-3")}>
-            <h3 className="fs-h2">{`Let's Hang Out Around the Bonfire !`}</h3>
+            <SplitText
+              text={`Let's Hang Out Around the Bonfire!`}
+              className="fs-h2"
+              as="h3"
+            />
           </div>
         </div>
       ) : null}

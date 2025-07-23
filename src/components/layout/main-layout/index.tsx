@@ -14,6 +14,7 @@ import { useUI } from "@/context/ui-context";
 import clsx from "clsx";
 import Footer from "../footer";
 import { usePathname } from "next/navigation";
+import Preloader from "@/components/views/perloader";
 
 const nohemi = localfont({
   src: [
@@ -54,6 +55,7 @@ const MainLayout = ({ children }: Props) => {
   useEffect(() => {
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);
+      ScrollTrigger.update();
     }
 
     gsap.ticker.add(update);
@@ -72,6 +74,7 @@ const MainLayout = ({ children }: Props) => {
           isMenuOpen ? "nav-open" : "nav-closed"
         )}
       >
+        <Preloader />
         <div className={s.container} ref={wrapperEl}>
           <Header />
           <main id="main-layout">

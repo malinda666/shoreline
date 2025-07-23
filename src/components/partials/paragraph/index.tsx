@@ -3,15 +3,27 @@ import React from "react";
 
 import s from "./paragraph.module.scss";
 import SplitText from "../split-text";
+import { TSplitTextTrigger, TSplitTextType } from "@/types";
 
 type Props = {
   content: string;
   indented?: boolean;
   className?: string;
   size?: "default" | "sm";
+  type?: TSplitTextType;
+  trigger?: TSplitTextTrigger;
+  position?: string | number;
 };
 
-const Paragraph = ({ content, indented, className, size }: Props) => {
+const Paragraph = ({
+  content,
+  indented,
+  className,
+  size,
+  type = "lines",
+  trigger,
+  position,
+}: Props) => {
   return (
     <div className={clsx(className)}>
       <SplitText
@@ -21,7 +33,9 @@ const Paragraph = ({ content, indented, className, size }: Props) => {
           indented && s.indented
         )}
         as="p"
-        type="lines"
+        type={type}
+        trigger={trigger}
+        position={position}
       />
     </div>
   );

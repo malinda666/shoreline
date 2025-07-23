@@ -5,18 +5,28 @@ export interface INavItem {
   metadata?: string | number;
 }
 
-export type THeroTypes = "main" | "secondary";
+export type THeroType = "main" | "secondary";
+
+export type TSplitTextType = "chars" | "words" | "lines";
+export type TSplitTextTrigger = "tl" | "scroll" | "intro";
 
 export interface IUIContext {
   isFirstLoad: boolean;
   isLoading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  setLoading: (loading: boolean) => void;
   isMenuOpen: boolean;
   toggleMenu: () => void;
   openMenu: () => void;
   closeMenu: () => void;
   isScrollEnabled: boolean;
-  setScrollEnabled: Dispatch<SetStateAction<boolean>>;
+  setScrollEnabled: (enabled: boolean) => void;
+  introTimeline: GSAPTimeline | null;
+  addToIntroTimeline: (
+    callback: (tl: GSAPTimeline) => GSAPTimeline,
+    position?: string | number
+  ) => void;
+  playIntroTimeline: () => void;
+  setPreloaderAnimation: (animation: GSAPTimeline) => void;
 }
 
 export interface ISubCategory {

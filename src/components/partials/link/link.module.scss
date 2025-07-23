@@ -48,7 +48,7 @@
 
     &_alt {
       opacity: 1;
-      transform: translate3d(calc(-0.5 * var(--x-percent)), 0, 0)
+      transform: translate3d(calc(-0.25 * var(--x-percent)), 0, 0)
         scale3d(1, 1, 1);
     }
   }
@@ -63,15 +63,10 @@
     transform: translate3d(calc(-1 * var(--factor) * var(--size)), 0, 0);
     transition: all var(--transition);
 
-    > sup {
-      font-size: auto;
-    }
-
     > span {
       font-size: var(--size) !important;
     }
   }
-  // Hover effects
   &:hover {
     .link_arrow_default {
       opacity: 1;
@@ -80,11 +75,7 @@
 
     .link_arrow_alt {
       opacity: 0;
-      transform: translate3d(
-          calc(0.5 * var(--x-percent)),
-          calc(-2 * var(--y-percent)),
-          0
-        )
+      transform: translate3d(calc(0.5 * var(--x-percent)), 0, 0)
         scale3d(0, 0, 1);
     }
 

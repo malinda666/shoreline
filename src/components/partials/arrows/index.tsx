@@ -36,5 +36,32 @@ const Arrow2 = ({ className }: ArrowProps) => (
     </svg>
   </div>
 );
+const Arrow3 = ({ className }: ArrowProps) => (
+  <div className={className}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 21 21"
+      fill="none"
+    >
+      <path
+        d="M19.7438 14.1387L19.7438 1.2562L13.203 7.8311C15.5911 5.43035 19.6903 7.10372 19.716 10.4899L19.7438 14.1387Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.7438 1.2562L11.1555 1.2562L6.86133 1.2562L10.4889 1.26933C13.9055 1.28169 15.6126 5.40886 13.203 7.8311L19.7438 1.2562Z"
+        fill="currentColor"
+      />
+      <path
+        d="M0.997796 20.0022L13.203 7.8311M19.7438 1.2562L11.1555 1.2562L6.86133 1.2562M19.7438 1.2562L19.7438 14.1387M19.7438 1.2562L13.203 7.8311M2.56718 1.2562L6.86133 1.2562M19.7438 18.4328V14.1387M6.86133 1.2562L10.4889 1.26933C13.9055 1.28169 15.6126 5.40886 13.203 7.8311V7.8311M19.7438 14.1387L19.716 10.4899C19.6903 7.10372 15.5911 5.43035 13.203 7.8311V7.8311"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </div>
+);
 
-export { Arrow, Arrow2 };
+export { Arrow, Arrow2, Arrow3 };

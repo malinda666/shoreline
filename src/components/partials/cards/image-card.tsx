@@ -5,7 +5,7 @@ import React from "react";
 import s from "./cards.module.scss";
 import Image from "next/image";
 import clsx from "clsx";
-import { Arrow2 } from "../arrows";
+import { Arrow3 } from "../arrows";
 
 type Props = {
   title: string;
@@ -25,7 +25,7 @@ const ImageCard = ({ title, image }: Props) => {
       <div className={clsx(s.title, "mt-6")}>
         <span className="fs-body">{title}</span>
         <span className="fs-body">
-          View <Arrow2 />
+          View <Arrow3 className="fs-body-sm" />
         </span>
       </div>
     </div>
