@@ -3,10 +3,9 @@
 import clsx from "clsx";
 import s from "./link.module.scss";
 import { getVWSize } from "@/lib/utils";
-import { useRouter } from "next/navigation";
-import { useUI } from "@/context/ui-context";
 import NextLink from "next/link";
 import { Arrow3 } from "../arrows";
+import { usePreloaderNavigation } from "@/hooks/usePreloaderNavigation";
 
 type Props = {
   href: string;
@@ -15,7 +14,7 @@ type Props = {
   size?: 1 | 2 | 3 | 4;
   metadata?: string | number;
   isActive?: boolean;
-  variant?: "default" | "alt";
+  variant?: "default" | "alt" | "stealth";
 };
 
 const Link = ({
@@ -27,25 +26,15 @@ const Link = ({
   isActive = false,
   variant = "default",
 }: Props) => {
-  const router = useRouter();
-  const { closeMenu } = useUI();
-
-  const navigate = () => {
-    console.log("transition start");
-
-    setTimeout(() => {
-      closeMenu();
-      router.push(href);
-      console.log("transition end");
-    }, 500);
-  };
+  const { navigate } = usePreloaderNavigation();
 
   return (
     <div
       className={clsx(
         s.link,
         className,
-        isActive ? `${s.link}-active` : `${s.link}-base`
+        isActive ? `${s.link}-active` : `${s.link}-base`,
+        `${s.link}-variant--${variant}`
       )}
       data-state={isActive ? "active" : "base"}
       style={{
@@ -53,12 +42,14 @@ const Link = ({
         ["--size" as any]: getVWSize(size),
       }}
     >
-      <Arrow3 className={clsx(s.link_arrow, s.link_arrow_default)} />
+      {(variant === "default" || variant === "alt") && (
+        <Arrow3 className={clsx(s.link_arrow, s.link_arrow_default)} />
+      )}
       <NextLink
         href={href}
         onClick={(e) => {
           e.preventDefault();
-          navigate();
+          navigate(href);
         }}
         className={clsx(s.link_content)}
       >

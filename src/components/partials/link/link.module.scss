@@ -67,7 +67,7 @@
       font-size: var(--size) !important;
     }
   }
-  &:hover {
+  &:hover:not(.link-variant--stealth) {
     .link_arrow_default {
       opacity: 1;
       transform: translate3d(0, 0, 0);

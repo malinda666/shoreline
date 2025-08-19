@@ -65,24 +65,25 @@ const MainLayout = ({ children }: Props) => {
 
   return (
     <html lang="en">
-      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
-      <body
-        className={clsx(
-          inter.variable,
-          nohemi.variable,
-          isScrollEnabled ? "" : "no-scroll",
-          isMenuOpen ? "nav-open" : "nav-closed"
-        )}
-      >
-        <Preloader />
-        <div className={s.container} ref={wrapperEl}>
-          <Header />
-          <main id="main-layout">
-            {children}
-            <Footer variant={isContentPages ? "half" : "default"} />
-          </main>
-        </div>
-      </body>
+      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
+        <body
+          className={clsx(
+            inter.variable,
+            nohemi.variable,
+            isScrollEnabled ? "" : "no-scroll",
+            isMenuOpen ? "nav-open" : "nav-closed"
+          )}
+        >
+          <Preloader />
+          <div className={s.container} ref={wrapperEl}>
+            <Header />
+            <main id="main-layout">
+              {children}
+              <Footer variant={isContentPages ? "half" : "default"} />
+            </main>
+          </div>
+        </body>
+      </ReactLenis>
     </html>
   );
 };

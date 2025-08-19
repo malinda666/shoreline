@@ -13,12 +13,14 @@ import Link from "@/components/partials/link";
 import { usePathname } from "next/navigation";
 import MenuButton from "./menu-button";
 import MenuAnimation from "@/animations/menu";
+import { useLenis } from "lenis/react";
 
 const Header = () => {
   const header = useRef<HTMLDivElement>(null);
 
   const { isMenuOpen, isFirstLoad } = useUI();
   const pathname = usePathname();
+  const lenis = useLenis();
 
   useGSAP(
     () => {
@@ -30,8 +32,10 @@ const Header = () => {
       }
       if (isMenuOpen) {
         menuAnimation.open();
+        lenis?.stop();
       } else {
         menuAnimation.close();
+        lenis?.start();
       }
     },
     { dependencies: [isMenuOpen, isFirstLoad], scope: header }
@@ -47,9 +51,8 @@ const Header = () => {
         )}
       >
         <div className={s.inner}>
-          <div className="fs-body">
-            <span>SHORELINE</span>
-          </div>
+          <Link text="SHORELINE" href="/" size={1} variant="stealth" />
+
           <MenuButton />
         </div>
       </header>

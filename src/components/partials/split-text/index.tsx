@@ -11,8 +11,6 @@ import clsx from "clsx";
 import s from "./split-text.module.scss";
 import _SplitText from "gsap/SplitText";
 import gsap from "gsap";
-import { revealTitle } from "@/animations/text";
-import { useUI } from "@/context/ui-context";
 import { TSplitTextTrigger, TSplitTextType } from "@/types";
 
 type Props<T extends ElementType> = {
@@ -38,8 +36,6 @@ const SplitText = <T extends React.ElementType = "div">({
   const Element = as || "div";
   const wrapperRef = useRef<HTMLElement | null>(null);
 
-  const { addToIntroTimeline } = useUI();
-
   const elementType = useMemo(() => {
     if (typeof as === "string") {
       return ["h1", "h2", "h3"].includes(as) ? "title" : "paragraph";
@@ -54,30 +50,21 @@ const SplitText = <T extends React.ElementType = "div">({
       type: type as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mask: type as any,
+      charsClass: "char++",
+      linesClass: "line++",
+      wordsClass: "word++",
     });
-
-    const targets = split[type];
-    const animation = revealTitle(targets, elementType);
-
-    if (trigger === "tl") {
-      revealTitle(split[type], elementType);
-    } else if (trigger === "intro") {
-      addToIntroTimeline(() => animation, position);
-    } else {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top bottom",
-          },
-        })
-        .add(animation, 0);
-    }
 
     return () => {
       split.revert?.();
     };
-  }, [type, trigger, position, elementType]);
+  }, [type, trigger, position, elementType, text]);
+
+  const dataAnim = useMemo(() => {
+    if (trigger === "tl") return "tl";
+    if (trigger === "intro") return "intro";
+    return "scroll";
+  }, [trigger]);
 
   return (
     <Element
@@ -85,6 +72,8 @@ const SplitText = <T extends React.ElementType = "div">({
       {...rest}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={wrapperRef as any}
+      data-anim={dataAnim}
+      data-split
     >
       {text}
     </Element>

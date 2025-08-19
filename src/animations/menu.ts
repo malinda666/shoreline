@@ -1,10 +1,11 @@
 import gsap from "gsap";
-
-const EASE1 = "power3.inOut";
-const BLUR_IN = "blur(4px)";
-const BLUR_OUT = "blur(0px)";
-const CLIP_HIDDEN = "inset(0% 0% 100% 0%)";
-const CLIP_VISIBLE = "inset(0% 0% 0% 0%)";
+import {
+  CLIP_HIDDEN,
+  EASE1,
+  BLUR_IN,
+  CLIP_VISIBLE,
+  BLUR_OUT,
+} from "./constants";
 
 export default class MenuAnimation {
   container: HTMLElement;

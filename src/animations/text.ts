@@ -1,10 +1,11 @@
 import gsap from "gsap";
+import { EASE1, REVEAL_DURATION } from "./constants";
 
 export const revealTitle = (
   elements: HTMLElement[] | Element[],
   elementType: "title" | "paragraph"
 ) => {
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({ paused: true });
 
   if (elementType === "title") {
     tl.fromTo(
@@ -51,4 +52,25 @@ export const revealTitle = (
   }
 
   return tl;
+};
+
+export const revealText = (elements: Element[], options?: GSAPTweenVars) => {
+  gsap.set(elements, {
+    yPercent: 100,
+    opacity: 1,
+    scale: 1,
+    transformOrigin: "50% 50%",
+  });
+
+  gsap.to(elements, {
+    yPercent: 0,
+    opacity: 1,
+    scale: 1,
+    duration: REVEAL_DURATION,
+    ease: EASE1,
+    stagger: {
+      amount: 0.5,
+    },
+    ...options,
+  });
 };

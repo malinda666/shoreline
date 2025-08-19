@@ -1,3 +1,5 @@
+import PageAnimation from "@/animations/pageanimation";
+
 export interface INavItem {
   key: string;
   label: string;
@@ -20,13 +22,8 @@ export interface IUIContext {
   closeMenu: () => void;
   isScrollEnabled: boolean;
   setScrollEnabled: (enabled: boolean) => void;
-  introTimeline: GSAPTimeline | null;
-  addToIntroTimeline: (
-    callback: (tl: GSAPTimeline) => GSAPTimeline,
-    position?: string | number
-  ) => void;
+  mainTl: PageAnimation | null;
   playIntroTimeline: () => void;
-  setPreloaderAnimation: (animation: GSAPTimeline) => void;
 }
 
 export interface ISubCategory {
