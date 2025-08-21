@@ -3,7 +3,7 @@ import React from "react";
 
 import s from "./paragraph.module.scss";
 import SplitText from "../split-text";
-import { TSplitTextTrigger, TSplitTextType } from "@/types";
+import { TAnimTrigger, TAnimType, TSplitTextType } from "@/types";
 
 type Props = {
   content: string;
@@ -11,8 +11,8 @@ type Props = {
   className?: string;
   size?: "default" | "sm";
   type?: TSplitTextType;
-  trigger?: TSplitTextTrigger;
-  position?: string | number;
+  trigger?: TAnimTrigger;
+  animType?: TAnimType;
 };
 
 const Paragraph = ({
@@ -22,7 +22,7 @@ const Paragraph = ({
   size,
   type = "lines",
   trigger,
-  position,
+  animType = "reveal",
 }: Props) => {
   return (
     <div className={clsx(className)}>
@@ -35,7 +35,7 @@ const Paragraph = ({
         as="p"
         type={type}
         trigger={trigger}
-        position={position}
+        animType={animType}
       />
     </div>
   );

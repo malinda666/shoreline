@@ -1,25 +1,19 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { revealText } from "./text";
+import { CLIP_HIDDEN, CLIP_HIDDEN_ALT, CLIP_VISIBLE } from "./constants";
 
+gsap.registerPlugin(ScrollTrigger);
 interface IDOM {
   el: HTMLElement;
   preloader: HTMLElement;
   main: HTMLElement;
-  splits: ISplitElements;
 }
-
-interface ISplitElements {
-  intro: HTMLElement[];
-  tl: HTMLElement[];
-  scroll: HTMLElement[];
-}
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default class PageAnimation {
   dom: IDOM;
   tl: GSAPTimeline;
+
   constructor() {
     const el = document.body as HTMLElement;
     this.dom = this.getDom(el);
@@ -33,62 +27,71 @@ export default class PageAnimation {
       el,
       main: el.querySelector("main") as HTMLElement,
       preloader: el.querySelector("[data-anim='preloader']") as HTMLElement,
-      splits: {
-        intro: [...el.querySelectorAll("[data-anim='intro']")] as HTMLElement[],
-        tl: [...el.querySelectorAll("[data-anim='tl']")] as HTMLElement[],
-        scroll: [
-          ...el.querySelectorAll("[data-anim='scroll']"),
-        ] as HTMLElement[],
-      },
     };
   }
 
-  init() {
+  private init() {
     this.tl.add(() => this.enterPage());
-    this.initScrollTrigger();
   }
 
-  initScrollTrigger() {
-    const {
-      splits: { scroll },
-    } = this.dom;
+  private cleanupScrollTriggers() {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+  }
 
-    for (let i = 0; i < scroll.length; i++) {
-      const el = scroll[i];
-      const splittedItems = [
+  private initAnimations() {
+    const elements = [...document.querySelectorAll<HTMLElement>("[data-anim]")];
+
+    elements.forEach((el) => {
+      const animAttr = el.dataset.anim;
+      if (!animAttr || animAttr === "preloader") return;
+      const [trigger, type] = animAttr.split(":");
+      const animationFn = this.animations[type];
+      if (!animationFn) return;
+
+      if (trigger === "intro") {
+        animationFn(el, { delay: 0.75 });
+      } else if (trigger === "scroll") {
+        animationFn(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top center+=40%",
+            once: true,
+          },
+        });
+      }
+    });
+    ScrollTrigger.refresh();
+  }
+
+  private animations: Record<
+    string,
+    (el: HTMLElement, options?: GSAPTweenVars) => void
+  > = {
+    reveal: (el, options = {}) => {
+      const items = [
         ...el.querySelectorAll(".char"),
         ...el.querySelectorAll(".word"),
         ...el.querySelectorAll(".line"),
+        ...el.querySelectorAll("span"),
       ];
-
-      revealText(splittedItems, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top center+=45%",
-        },
+      revealText(items.length ? items : [el], {
+        duration: 1,
+        ...options,
       });
-    }
-  }
-
-  introAnimation() {
-    this.dom = this.getDom(document.body as HTMLElement);
-    const {
-      splits: { intro },
-    } = this.dom;
-    for (let i = 0; i < intro.length; i++) {
-      const el = intro[i];
-      const splittedItems = [
-        ...el.querySelectorAll(".char"),
-        ...el.querySelectorAll(".word"),
-        ...el.querySelectorAll(".line"),
-      ];
-
-      revealText(splittedItems, { delay: 0.5 });
-    }
-  }
+    },
+    "scale-down": (el, options = {}) => {
+      gsap.set(el, { scale: 1.2, opacity: 0, transformOrigin: "50% 50%" });
+      gsap.to(el, {
+        scale: 1,
+        opacity: 1,
+        duration: 1,
+        ease: "expo.out",
+        ...options,
+      });
+    },
+  };
 
   exitAnimation() {
-    this.dom = this.getDom(document.body as HTMLElement);
     console.log("exit animation");
   }
 
@@ -99,25 +102,22 @@ export default class PageAnimation {
   enterPage(cb?: () => void) {
     this.tl
       .clear()
+      .add(() => cb?.())
       .add(() => {
-        if (cb && typeof cb === "function") {
-          cb();
-        }
-      })
-      .add(() => {
+        this.dom = this.getDom(document.body as HTMLElement);
         this.hidePreloader().play();
-      }, 1)
-      .add(() => this.introAnimation());
+      }, 0.5)
+      .add(() => this.cleanupScrollTriggers())
+      .add(() => this.initAnimations(), "+=0.2");
   }
   exitPage(cb?: () => void) {
     this.tl
       .clear()
+      .add(() => cb?.())
       .add(() => {
-        if (cb && typeof cb === "function") {
-          cb();
-        }
+        this.cleanupScrollTriggers();
+        this.exitAnimation();
       })
-      .add(() => this.exitAnimation())
       .add(this.showPreloader().play());
   }
 
@@ -132,10 +132,10 @@ export default class PageAnimation {
     const el = this.dom.preloader;
 
     tl.set(el, {
-      clipPath: "inset(100% 0% 0% 0%)",
+      clipPath: CLIP_HIDDEN_ALT,
     }).to(el, {
-      clipPath: "inset(0% 0% 0% 0%)",
-      transformOrigin: "0% 0%",
+      clipPath: CLIP_VISIBLE,
+      transformOrigin: "100% 0%",
     });
 
     return tl;
@@ -152,9 +152,9 @@ export default class PageAnimation {
     const el = this.dom.preloader;
 
     tl.set(el, {
-      clipPath: "inset(0% 0% 0% 0%)",
+      clipPath: CLIP_VISIBLE,
     }).to(el, {
-      clipPath: "inset(0% 0% 100% 0%)",
+      clipPath: CLIP_HIDDEN,
       transformOrigin: "0% 0%",
     });
 

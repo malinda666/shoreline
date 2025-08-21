@@ -28,7 +28,9 @@ const Hero = ({
       className={clsx(isMain ? s.container_main : s.container_secondary)}
       isSpaced={false}
     >
-      {isMain ? <div className={s.background} /> : null}
+      {isMain ? (
+        <div className={s.background} data-anim="intro:scale-down" />
+      ) : null}
 
       <div
         className={clsx(s.wrapper, "layout", !isMain ? "pt-1 pb-2" : "pb-3")}
@@ -43,7 +45,7 @@ const Hero = ({
                   type="words"
                   text={subtitle}
                   trigger="intro"
-                  position={0}
+                  animType="reveal"
                 />
               </div>
               <div className={s.title}>
@@ -52,14 +54,14 @@ const Hero = ({
                   as="h1"
                   text={titleLine1}
                   trigger="intro"
-                  position="<0.4"
+                  animType="reveal"
                 />
                 <SplitText
                   className={clsx("fs-h1")}
                   as="h1"
                   text={titleLine2}
                   trigger="intro"
-                  position="<0.2"
+                  animType="reveal"
                 />
               </div>
             </>
@@ -71,14 +73,14 @@ const Hero = ({
                   as="h2"
                   text={titleLine1}
                   trigger="intro"
-                  position="0"
+                  animType="reveal"
                 />
                 <SplitText
                   className={clsx("fs-h2-bold")}
                   as="h2"
                   text={titleLine2}
                   trigger="intro"
-                  position="<0.2"
+                  animType="reveal"
                 />
               </div>
               <div className={clsx(s.sub_title, "layout--full pt-2")}>
@@ -88,14 +90,14 @@ const Hero = ({
                   className={clsx(s.sub_title_para)}
                   indented
                   trigger="intro"
-                  position="<0.4"
+                  animType="reveal"
                 />
               </div>
             </>
           )}
         </div>
         {isMain ? (
-          <div className={clsx(s.meta, "mb-4")}>
+          <div className={clsx(s.meta, "mb-4")} data-anim="intro:reveal">
             <span>Est. 1992</span>
           </div>
         ) : null}

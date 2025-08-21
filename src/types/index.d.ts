@@ -10,7 +10,8 @@ export interface INavItem {
 export type THeroType = "main" | "secondary";
 
 export type TSplitTextType = "chars" | "words" | "lines";
-export type TSplitTextTrigger = "tl" | "scroll" | "intro";
+export type TAnimTrigger = "tl" | "scroll" | "intro";
+export type TAnimType = "reveal" | "scale-down" | "parallax";
 
 export interface IUIContext {
   isFirstLoad: boolean;

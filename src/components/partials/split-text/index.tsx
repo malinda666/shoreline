@@ -11,15 +11,15 @@ import clsx from "clsx";
 import s from "./split-text.module.scss";
 import _SplitText from "gsap/SplitText";
 import gsap from "gsap";
-import { TSplitTextTrigger, TSplitTextType } from "@/types";
+import { TAnimTrigger, TAnimType, TSplitTextType } from "@/types";
 
 type Props<T extends ElementType> = {
   text: string;
   as?: T;
   className?: string;
   type?: TSplitTextType;
-  trigger?: TSplitTextTrigger;
-  position?: number | string;
+  trigger?: TAnimTrigger;
+  animType?: TAnimType;
 } & Omit<ComponentPropsWithoutRef<T>, "as">;
 
 gsap.registerPlugin(_SplitText);
@@ -30,7 +30,7 @@ const SplitText = <T extends React.ElementType = "div">({
   className,
   type = "chars",
   trigger = "scroll",
-  position = 0,
+  animType = "reveal",
   ...rest
 }: Props<T>) => {
   const Element = as || "div";
@@ -58,13 +58,11 @@ const SplitText = <T extends React.ElementType = "div">({
     return () => {
       split.revert?.();
     };
-  }, [type, trigger, position, elementType, text]);
+  }, [type, trigger, elementType, text]);
 
   const dataAnim = useMemo(() => {
-    if (trigger === "tl") return "tl";
-    if (trigger === "intro") return "intro";
-    return "scroll";
-  }, [trigger]);
+    return `${trigger}:${animType}`;
+  }, [trigger, animType]);
 
   return (
     <Element

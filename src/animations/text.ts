@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { EASE1, REVEAL_DURATION } from "./constants";
+import { EASE2, REVEAL_DURATION } from "./constants";
 
 export const revealTitle = (
   elements: HTMLElement[] | Element[],
@@ -54,23 +54,34 @@ export const revealTitle = (
   return tl;
 };
 
-export const revealText = (elements: Element[], options?: GSAPTweenVars) => {
+export const revealText = (
+  elements: Element[],
+  options: GSAPTweenVars = {}
+) => {
+  const { scrollTrigger, ...tweenOptions } = options;
+
+  const tl = gsap.timeline({ scrollTrigger });
   gsap.set(elements, {
     yPercent: 100,
-    opacity: 1,
+    rotateZ: 7,
     scale: 1,
-    transformOrigin: "50% 50%",
+    transformOrigin: "0% 50%",
+    display: "inline-block",
+    position: "relative",
   });
 
-  gsap.to(elements, {
+  tl.to(elements, {
     yPercent: 0,
-    opacity: 1,
+    rotateZ: 0,
     scale: 1,
     duration: REVEAL_DURATION,
-    ease: EASE1,
+    ease: EASE2,
     stagger: {
-      amount: 0.5,
+      amount: 0.25,
+      from: "start",
     },
-    ...options,
+    ...tweenOptions,
   });
+
+  return tl;
 };

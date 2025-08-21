@@ -50,7 +50,7 @@ const Header = () => {
           isMenuOpen ? s.container_dark : null
         )}
       >
-        <div className={s.inner}>
+        <div className={clsx(s.inner, s.logo_wrap)}>
           <Link text="SHORELINE" href="/" size={1} variant="stealth" />
 
           <MenuButton />
